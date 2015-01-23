@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Sun Jan 18 04:35:34 CET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-014a-fb1c-27fb-000003995828 
+on database directory /home/gloss/micro-blagajna-database  with class loader sun.misc.Launcher$AppClassLoader@44d9973a 
+Loaded from file:/home/gloss/Razvoj/micro-Blagajna-381/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_72-b14
+user.dir=/home/gloss/Razvoj/micro-Blagajna-381
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
