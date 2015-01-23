@@ -19,7 +19,7 @@
 #    along with uniCenta oPOS.  If not, see <http://www.gnu.org/licenses/>.
 
 DIRNAME=`dirname $0`
-CP=$DIRNAME/unicentaopos.jar
+CP=$DIRNAME/micro-Blagajna.jar
 CP=$CP:$DIRNAME/lib/jasperreports-4.5.1.jar
 CP=$CP:$DIRNAME/lib/jcommon-1.0.15.jar
 CP=$CP:$DIRNAME/lib/jfreechart-1.0.12.jar
