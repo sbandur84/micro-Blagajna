@@ -363,8 +363,8 @@ public class JProductAttEdit extends javax.swing.JDialog {
        
         StringBuilder description = new StringBuilder();
         for (JProductAttEditI item : itemslist) {
-            String value = item.getValue();
-            if (value != null && value.length() > 0) {
+            String value = item.getName()+": "+item.getValue(); // edit seba – append attribute name to value
+            if (item.getValue() != null && item.getValue().length() > 0) {
                 if (description.length() > 0) {
                     description.append(", ");
                 }

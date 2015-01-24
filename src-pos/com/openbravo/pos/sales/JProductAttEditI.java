@@ -38,6 +38,13 @@ public interface JProductAttEditI {
      * @return
      */
     public String getValue();
+    
+        /**
+     *
+     * @return
+     */
+    public String getName();
+
 
     /**
      *

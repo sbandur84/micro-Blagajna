@@ -31,7 +31,7 @@ public class JProductAttListItem extends javax.swing.JPanel implements JProductA
 
     private String attid;
     private ComboBoxValModel model;
-
+    private String attname;
     /** Creates new form JProductAttListItem
      * @param attid
      * @param label
@@ -40,7 +40,7 @@ public class JProductAttListItem extends javax.swing.JPanel implements JProductA
     public JProductAttListItem(String attid, String label, String value, List<String> values) {
 
         this.attid = attid;
-
+        this.attname = label;
         initComponents();
 
         jLabel1.setText(label);
@@ -77,7 +77,13 @@ public class JProductAttListItem extends javax.swing.JPanel implements JProductA
     public String getValue() {
         return (String) jValues.getSelectedItem();
     }
-
+    /**
+     *
+     * @return
+     */
+    public String getName() {
+        return attname;
+    }
     /**
      *
      * @return
