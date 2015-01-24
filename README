@@ -1,15 +1,20 @@
-24 Januar 2015
-Izdaja: v3.81.6
+# micro–Blagajna
+## Brezplačna odprto–kodna POS blagajna na dotik
+## 24 Januar 2015
+### Izdaja: v3.81.6
 
-micro–Blagajna, Brezplačna odprto–kodna POS blagajna na dotik
+Sebastijan Bandur, ustanovitelj
+www.smikro.org
+PODPORA: www.micro-open.si
+E-POŠTA: info@smikro.org
 
 Odprtokoden program za vse vrste prodajaln, trgovin, restavracij, kioskov, 
-salonov, gostiln in sejmov. Ima tri načine streženja računov - restavracija/trgovina/preprosto. 
+salonov, gostiln in sejmov. Ima tri načine streženja računov – restavracija/trgovina/preprosto. 
 Podpira veliko tiskalnikov, plačilnih prehodov (plačilo s kartico), tehtnic in LCD prikazovalnikov cene.
 
-PODPORA: www.micro-open.si
 
-!------!------! POZOR! – OBVEZNO BRANJE !------!------!
+
+# !------!------! POZOR! – OBVEZNO BRANJE !------!------!
 micro–Blagajna ima nekatere zadeve določene:
     a. Privzeto skupino: "Glavna skupina"
     b. Privzet izdelek z referenco xxx999
@@ -20,89 +25,80 @@ Lahko jih preimenujete...
 SAMO IZBRISATI JIH NE SMETE!
 !------!------!------!------!------!------!------!
 
-LASTNOSTI SISTEMA micro–Blagajna
+# LASTNOSTI SISTEMA micro–Blagajna
 
-PRODAJA
+## PRODAJA
+* Pogledi prodaje
+** pogled Restavracije/Hotela; tloris nadstropji hotela z mizami ali/in sobami
+** normalna izdaja računov; seznamom odprtih računov in skupin z artikli
+** preprosta izdaja računov; en odprt račun na enkrat
+* rezervacije
+* popusti na izdelke
+* podpora za tehtnico
+* artikli po meri
+* kuhinjski tiskalnik
+* preračun vračila denarja
+* slike izdelkov na gumbih
 
-    Pogledi prodaje
-        pogled Restavracije/Hotela; tloris nadstropji hotela z mizami ali/in sobami
-        normalna izdaja računov; seznamom odprtih računov in skupin z artikli
-        preprosta izdaja računov; en odprt račun na enkrat
-    rezervacije
-    popusti na izdelke
-    podpora za tehtnico
-    artikli po meri
-    kuhinjski tiskalnik
-    preračun vračila denarja
-    slike izdelkov na gumbih
+## RAČUNI
 
-RAČUNI
+* prilagodljivo tiskanje računov(širina izpisa, A4, informativni predračun, dodatne informacije na računu)
+* seznam izdanih računov / storno računov
+* iskanje in prikaz računov po številki, datumu, stranki ali blagajniku
+* izpis in predogled izdanih računov v izvorni obliki
+* odstranjene vse reference za brisanje računov, ter onemogočeno odstranjevanje artiklov iz računov (ob stornaciji se ustvari nov storno račun, stari račun ostane v seznamu)
+* zaslonski tiskalnik z pogledom vseh natisnjenih izpisov od zadnje prijave
+* izpis prejete in vrnjene gotovine
 
-    prilagodljivo tiskanje računov(širina izpisa, A4, informativni predračun, dodatne informacije na računu)
-    seznam izdanih računov / storno računov
-    iskanje in prikaz računov po številki, datumu, stranki ali blagajniku
-    izpis in predogled izdanih računov v izvorni obliki
-    odstranjene vse reference za brisanje računov, ter onemogočeno odstranjevanje artiklov iz računov (ob stornaciji se ustvari nov storno račun, stari račun ostane v seznamu)
-    zaslonski tiskalnik z pogledom vseh natisnjenih izpisov od zadnje prijave
-    izpis prejete in vrnjene gotovine
+## PLAČILA STRANK
+* beleženje in vračilo dolgov
+* omejitev najvišjega dolga stranke
+* poročila strank z dolgovi
 
-PLAČILA STRANK
+## BLAGAJNA
+* vnos in iznos denarja v blagajno med zaključki
+* beleženje vnosov in iznosov na zaključkih blagajne
 
-    beleženje in vračilo dolgov
-    omejitev najvišjega dolga stranke
-    poročila strank z dolgovi
+## PODPORA ZA VEČ TERMINALOV, TISKALNIKOV IN UPORABNIKOV
+* povezano delovanje več terminalov na različnih lokacijah z različnimi skladišči
+* mošnost izpisa določenih artiklov na druge tiskalnike (kuhinjski, barski)
+* preverjanje blagajnikov z geslom
+* precizno nastavljanje dovoljenj zaposlenih
+* beleženje dopustov in odmorov zaposlenih
 
-MENJALNI DENAR
+## ZAKLJUČEK BLAGAJNE
+* zaključevanje blagajne
+* izpis zaključka z specifikacijo plačil, dolgov, plačilnih kartic, vračil
+* poročila zaključkov blagajne
 
-    vnos in iznos denarja v blagajno med zaključki
-    beleženje vnosov in iznosov na zaključkih blagajne
+## STRANKE
+* seznam strank
+* urejanje / dodajanje strank
+* seznam transakcij strank
+* napredna poročila strank
+* slike strank
 
-PODPORA ZA VEČ TERMINALOV, TISKALNIKOV IN UPORABNIKOV
+## ZALOGA
+* artikli
+* skupine artiklov
+* lastnosti artiklov
+* pod artikli
+* vodenje večih lokacij skladišč
+* dobavnice; vodenje zaloge
+* premiki zaloge med skladišči
+* poročila zaloge
 
-    povezano delovanje več terminalov na različnih lokacijah z različnimi skladišči
-    mošnost izpisa določenih artiklov na druge tiskalnike (kuhinjski, barski)
-    preverjanje blagajnikov z geslom
-    precizno nastavljanje dovoljenj zaposlenih
-    beleženje dopustov in odmorov zaposlenih
-
-ZAKLJUČEK BLAGAJNE
-
-    zaključevanje blagajne
-    izpis zaključka z specifikacijo plačil, dolgov, plačilnih kartic, vračil
-    poročila zaključkov blagajne
-
-STRANKE
-
-    seznam strank
-    urejanje / dodajanje strank
-    seznam transakcij strank
-    napredna poročila strank
-    slike strank
-
-ZALOGA
-
-    artikli
-    skupine artiklov
-    lastnosti artiklov
-    pod artikli
-    vodenje večih lokacij skladišč
-    dobavnice; vodenje zaloge
-    premiki zaloge med skladišči
-    poročila zaloge
-
-POROČILA PRODAJE
-
-    poročila prodaje po izdelkih
-    skupinah
-    dnevnik plačil
-    grafi prodaje
+## POROČILA PRODAJE
+* poročila prodaje po izdelkih
+* po skupinah
+* dnevnik plačil
+* grafi prodaje
+* ...
 
 
+## Osnova za micro–Blagajna je uniCenta oPOS
+### Openbravo oPOS –> uniCenta oPOS –> micro-Blagajna
 
-
-
-
-Osnova za micro–Blagajna je uniCenta oPOS:
 uniCenta oPOS Point Of Sale is open source and free software licensed to you
 under the GNU GPL 3 license.
 It is a commercial-grade quality product and your use is not restricted in
