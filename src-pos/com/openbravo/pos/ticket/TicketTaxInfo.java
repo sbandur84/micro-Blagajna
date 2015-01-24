@@ -28,7 +28,6 @@ import com.openbravo.format.Formats;
 public class TicketTaxInfo {
     
     private final TaxInfo tax;
-    
     private double subtotal;
     private double taxtotal;
             
@@ -104,5 +103,12 @@ public class TicketTaxInfo {
      */
     public String printTotal() {
         return Formats.CURRENCY.formatValue(new Double(getTotal()));
-    }    
+    }   
+    /**
+     *
+     * @return
+     */
+    public String printTaxName() {
+        return tax.getName();
+    } 
 }
