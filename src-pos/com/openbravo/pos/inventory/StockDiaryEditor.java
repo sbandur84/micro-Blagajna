@@ -170,6 +170,18 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         m_junits.setEnabled(false);
         m_jprice.setEnabled(false);
         m_cat.setComponentEnabled(false);
+        
+        
+        // add seba - stock calcualtion
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        
     }
     
     /**
@@ -210,6 +222,18 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         m_junits.setEnabled(true);
         m_jprice.setEnabled(true);   
         m_cat.setComponentEnabled(true);
+        
+        
+        
+                // add seba - stock calcualtion
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField1.setEnabled(true);
+        jTextField2.setEnabled(true);
+        jTextField3.setEnabled(true);
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
     }
 
     /**
@@ -251,6 +275,14 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         m_junits.setEnabled(false);
         m_jprice.setEnabled(false);   
         m_cat.setComponentEnabled(false);
+        
+        
+        // add seba - stock calcualtion
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
     }
     
     /**
@@ -293,6 +325,13 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         m_junits.setEnabled(false);
         m_jprice.setEnabled(false);  
         m_cat.setComponentEnabled(false);
+        
+        // add seba - stock calcualtion
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
     }
     
     /**
@@ -581,7 +620,7 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         jLabel3.setMaximumSize(new java.awt.Dimension(40, 20));
         jLabel3.setMinimumSize(new java.awt.Dimension(40, 20));
         jLabel3.setPreferredSize(new java.awt.Dimension(40, 20));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 25));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 115, 80, 25));
 
         m_jreference.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jreference.addActionListener(new java.awt.event.ActionListener() {
@@ -656,20 +695,20 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 175, 70, 25));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 175, 80, 25));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 175, 80, 25));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("pos_messages"); // NOI18N
         jLabel10.setText(bundle.getString("label.unitsbuy")); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 175, -1, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel11.setText("Cena skupaj");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 175, -1, 30));
+        jLabel11.setText(bundle.getString("label.priceunitbuy")); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 170, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel12.setText("Prodajnih enot / enoto");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 175, -1, 30));
+        jLabel12.setText(bundle.getString("label.selunitperunit")); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, 30));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setText(bundle.getString("button.calculate")); // NOI18N
@@ -678,7 +717,7 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 175, 100, 25));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 175, 100, 25));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton2.setText("Počisti");
@@ -687,7 +726,7 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 175, 80, 25));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 175, 80, 25));
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -771,7 +810,7 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
 }//GEN-LAST:event_jEditProductActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        // preračunavanje vrednosti enote zaloge
         int buyunits;
         double buyprice;
         int selunitmod;
@@ -785,8 +824,8 @@ public final class StockDiaryEditor extends javax.swing.JPanel implements Editor
         
         
         
-        int amountselunit= buyunits*selunitmod;
-        double priceselunit = buyprice/amountselunit;
+        double amountselunit= buyunits*selunitmod;
+        double priceselunit = buyprice/selunitmod;
         
         m_junits.setText(Formats.INT.formatValue(amountselunit));
         m_jprice.setText(Formats.CURRENCY.formatValue(priceselunit));
