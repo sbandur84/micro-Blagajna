@@ -182,7 +182,7 @@ public class AppConfig implements AppProperties {
      * Settings over-rides
      * @throws IOException
      */
-    
+    /// load default config
     private void loadDefault() {
         
         m_propsconfig = new Properties();
@@ -270,7 +270,10 @@ public class AppConfig implements AppProperties {
         m_propsconfig.setProperty("machine.uniqueinstance", "false");
         
 //JG July 2014 - Thank you Ron Isaacson On-screen receipt defauls to 42 columns
-        m_propsconfig.setProperty("screen.receipt.columns", "42");        
+        m_propsconfig.setProperty("screen.receipt.columns", "42");
+        
+        // add seba --- auto hide menu setting
+        m_propsconfig.setProperty("menu.autohide", "false");
         
 
     }

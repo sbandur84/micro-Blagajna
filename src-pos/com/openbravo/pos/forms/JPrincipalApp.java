@@ -501,8 +501,11 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
 
                 setMenuVisible(getBounds().width > 800);
 // JG Added 10 Nov 12
-                setMenuVisible(false);
-
+                // edit seba - menu auto-hide in settings
+                if( m_appview.getProperties().getProperty("menu.autohide").equals("true") ){
+                    setMenuVisible(false);
+                }
+                                   
                 showView(sTaskClass);   
                 String sTitle = m_jMyView.getTitle();
                 m_jPanelTitle.setVisible(sTitle != null);
