@@ -149,24 +149,15 @@ public class JTicketsBagTicket extends JTicketsBag {
     }
     
     /**
-     *
+     * edit seba - odstranjevanje zadnjih referenc za brisanje računov
      */
     @Override
     public void deleteTicket() {
-        
-        if (m_ticketCopy != null) {           
-            // Para editar borramos el ticket anterior
-            try {               
-                m_dlSales.deleteTicket(m_ticketCopy, m_App.getInventoryLocation());
-            } catch (BasicException eData) {
-                MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, AppLocal.getIntString("message.nosaveticket"), eData);
-                msg.show(this);                
-            }            
-        }
-        
-        m_ticket = null;
-        m_ticketCopy = null;
-        resetToTicket(); 
+        // edit seba
+        // po odstranitvi gumba za urejanje  računa in okna za urejanje artiklov na računu
+        //--------------------------------------------
+        // dodatno odstranjena vsebina funkcije za brisanje računa 
+        // 
     }
 
     /**
