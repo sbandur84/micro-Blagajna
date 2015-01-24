@@ -159,14 +159,14 @@
 		<line><text align ="right" length="42">${paymentline.printTotal()}</text></line>
 	#end
 #end
-
-	<line></line>
-	<line ><text bold="true">POROČILO DDV</text></line>
-<line><text align="left" length="42">------------------------------------------</text></line>
-
-	<line><text align ="left" bold="true" length="16">Osnova za DDV:</text><text align ="right" length="26">${ticket.printSubTotal()}</text></line>
+<line></line>
+<line><text align ="left"  length="16">Osnova za DDV:</text><text align ="right" length="26">${ticket.printSubTotal()}</text></line>
 	<line><text align ="left" length="16">DDV:</text><text align ="right" length="26">${ticket.printTax()}</text></line>
 	<line></line>
+
+<line></line>
+	<line ><text bold="true">POROČILO DDV</text></line>
+<line><text align="left" length="42">------------------------------------------</text></line>
 
 
         <line>
@@ -177,12 +177,14 @@
 <line><text align="left" length="42">------------------------------------------</text></line>
 
 #foreach ($taxinfo in $taxes)
-      <!-- #set( $taxline = $ticket.getTaxLine($taxinfo)) -->
+     <!-- #set( $taxline = $ticket.getTaxLine($taxinfo)) -->
+	#if($taxline.getTax()>0)
         <line>
             <text align ="left" length="18">${taxline.getTaxInfo()}</text>
             <text align ="right" length="12">${taxline.printSubTotal()}</text>
             <text align ="right" length="12">${taxline.printTax()}</text>
         </line>
+	#end
 #end
 
 	<line></line>
@@ -190,14 +192,5 @@
 	<line><text align="center" length="42">Nasvidenje</text></line>
 
 </ticket>
-
-#foreach ($paymentline in $ticket.payments)
-	#if ($paymentline.name == "cash")
-		<opendrawer/>
-	#end
-	#if ($paymentline.name == "cashrefund")
-		<opendrawer/>
-	#end
-#end
 
 </output>
