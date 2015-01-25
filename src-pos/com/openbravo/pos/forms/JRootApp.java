@@ -285,14 +285,15 @@ public class JRootApp extends JPanel implements AppView {
         String newText = m_props.getProperty("start.text");
         if (newText != null) {
             if (newText.equals("")){
-            jLabel1.setText("<html><center>micro-Blagajna - Brezplačna POS blagajna na dotik<br>" +
-            "http://www.micro-open.si/<br>" +
+            jLabel1.setText("<html><center>micro-Blagajna - Brezplačna odprto–kodna POS blagajna na dotik<br>" +
+            "Podpora: <a href='http://www.micro-open.si/' >http://www.micro-open.si/</a><br>" +
+            "Programska oprema: <a href='http://www.smikro.org/' >http://www.smikro.org/</a><br>" +
             "<br>" +
-            "micro-Blagajna je prosta programska oprema! You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>" +
+            "micro–Blagajna je prosta programska oprema! Lahko jo ponujate in modificirate pod pogoji licence GNU General Public Licence, ki je objavljena s strani Free Software Foundation, uporabite lahko licenco različice 3, ali na Vašo željo, katerokoli novejšo različico.<br>" +
             "<br>" +
-            "micro-Blagajna is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br>" +
+            "Aplikacijo micro–Blagajna ponujamo v upanju da bo uporabna, BREZ GARANCIJ!<br><br>Za več informacij preberite GNU General Public License.<br>" +
             "<br>" +
-            "You should have received a copy of the GNU General Public License along with micro-Blagajna.  If not, see http://www.gnu.org/licenses/<br>" +
+            "Kopijo licence GNU General Public License bi morali prejeti s POS sistemom micro–Blagajna!<br><br>V primeru, da licence niste prejeli, obiščite <a href='http://www.gnu.org/licenses/' >http://www.gnu.org/licenses/</a><br>" +
             "</center>");}
             else{
             try {    
