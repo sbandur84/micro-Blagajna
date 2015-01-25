@@ -1,7 +1,7 @@
 # micro–Blagajna
 ## Brezplačna odprto–kodna POS blagajna na dotik
 ## 24 Januar 2015
-### Izdaja: v3.81.6
+### Izdaja: v3.81.7
 
 Sebastijan Bandur, ustanovitelj
 www.smikro.org
@@ -13,17 +13,16 @@ salonov, gostiln in sejmov. Ima tri načine streženja računov – restavracija
 Podpira veliko tiskalnikov, plačilnih prehodov (plačilo s kartico), tehtnic in LCD prikazovalnikov cene.
 
 
-
-# !------!------! POZOR! – OBVEZNO BRANJE !------!------!
+!------!------! POZOR! – OBVEZNO BRANJE !------!------!------!------!------!------!------!------!------!------!
 micro–Blagajna ima nekatere zadeve določene:
-    a. Privzeto skupino: "Glavna skupina"
-    b. Privzet izdelek z referenco xxx999
-    c. Tri privzete davčne stopnje: Brez DDV, DDV 22 %, DDV 9,5 %
+    A. Privzeti skupini: "Glavna skupina" in "Servisna skupina" –> NE ODSTRANJUJTE TEH SKUPIN IZDELKOV
+    B. Privzet izdelek z referenco: "xxx999" –> NE SPREMINJAJTE REFERENCE
+    C. Dve privzeti davčni stopnji: "DDV 22 %" in "DDV 9,5 %" –> NE ODSTRANJUJTE DAVČNIH SKUPIN IN STOPENJ
 
 NE ODSTRANJUJTE JIH!
 Lahko jih preimenujete...
 SAMO IZBRISATI JIH NE SMETE!
-!------!------!------!------!------!------!------!
+!------!------!------!------!------!------!------!------!------!------!------!------!------!------!------!------!
 
 # LASTNOSTI SISTEMA micro–Blagajna
 
