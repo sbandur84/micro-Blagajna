@@ -58,6 +58,10 @@ public class DeviceScale {
                 // on screen scale
                 m_scale = new ScaleDialog(parent);
                 break;
+            case "screenmesure":
+                // add seba - on screen mesure input
+                m_scale = new ScaleMesure(parent);
+                break;
             default:
                 m_scale = null;
                 break;

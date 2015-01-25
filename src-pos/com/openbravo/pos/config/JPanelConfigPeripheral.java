@@ -375,6 +375,8 @@ public class JPanelConfigPeripheral extends javax.swing.JPanel implements PanelC
         jcboMachineScale.addItem("casiopd1");
         jcboMachineScale.addItem("dialog1");
         jcboMachineScale.addItem("samsungesp");
+        // add seba - screen scale - mesure input
+        jcboMachineScale.addItem("screenmesure");
 
         jcboSerialScale.addItem("COM1");
         jcboSerialScale.addItem("COM2");
