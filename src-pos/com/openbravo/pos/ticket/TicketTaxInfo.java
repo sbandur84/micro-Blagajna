@@ -30,12 +30,13 @@ public class TicketTaxInfo {
     private final TaxInfo tax;
     private double subtotal;
     private double taxtotal;
+    private String name;
             
     /** Creates a new instance of TicketTaxInfo
      * @param tax */
     public TicketTaxInfo(TaxInfo tax) {
         this.tax = tax;
-        
+        name = tax.getName();
         subtotal = 0.0;
         taxtotal = 0.0;
     }
@@ -75,6 +76,14 @@ public class TicketTaxInfo {
     
     /**
      *
+     * @return edit seba - dodano ime
+     */
+    public String getName() {       
+        return name;
+    }
+    
+    /**
+     *
      * @return
      */
     public double getTotal() {         
@@ -109,6 +118,6 @@ public class TicketTaxInfo {
      * @return
      */
     public String printTaxName() {
-        return tax.getName();
+        return name;
     } 
 }

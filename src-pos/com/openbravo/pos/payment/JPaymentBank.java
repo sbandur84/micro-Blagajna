@@ -77,7 +77,8 @@ public class JPaymentBank extends javax.swing.JPanel implements JPaymentInterfac
      */
     @Override
     public PaymentInfo executePayment() {
-        return new PaymentInfoTicket(m_dPaid, "bank");      
+        // edit seba - plačila iz banke se ne knjižijo v blagajno –> return new PaymentInfoTicket(m_dPaid, "bank");      
+        return new PaymentInfoTicket(0.00001, "bank");      
     }
 
     /**

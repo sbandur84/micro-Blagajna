@@ -8,184 +8,263 @@
 </display>
 
 <ticket>
-       	       	<line></line>
-                #if ($ticket.getCustomer())
-                <line size="1"><text align="left" length="10">Stranka:</text></line>
-                #end
-            	<line size="1">
-                    #if ($ticket.getCustomer())
-                    <text align="left" length="58">${ticket.getCustomer().printName()}</text>
-                    <text align="right" length="50">Sebastijan Bandur s.p.</text>
-                    #else
-                    <text align="right" length="108">Sebastijan Bandur s.p.</text>
-                    #end
-                </line>
-           	<line size="1">
-                    #if ($ticket.getCustomer())
-                    <text align="left" length="58">${ticket.getCustomer().getAddress()}</text>
-                    <text align="right" length="50">Trniče 4</text>
-                    #else
-                    <text align="right" length="108">Trniče 4</text>
-                    #end                                       
-                </line>
-                <line size="1">
-                    #if ($ticket.getCustomer())
-                    <text align="left" length="58">${ticket.getCustomer().getPostal()}, ${ticket.getCustomer().getCity()}</text>
-                    <text align="right" length="50">2206, Marjeta na dravskem polju</text>
-                    #else
-                    <text align="right" length="108">2206, Marjeta na dravskem polju</text>
-                    #end 
-                </line>
-        	<line size="1">
-                    #if ($ticket.getCustomer())
-                    <text align="left" length="58">Id za DDV: ${ticket.getCustomer().getTaxid()}</text>
-                    <text align="right" length="50">Id za DDV: 68283270</text>
-                    #else
-                    <text align="right" length="108">Id za DDV: 68283270</text>
-                    #end 
-                </line>
-        	<line size="1">
-                    #if ($ticket.getCustomer())
-                    <text align="left" length="58">Matična št. : ${ticket.getCustomer().getCompanyid()}</text>
-                    <text align="right" length="50">Matična št. : 6688462000</text>
-                    #else
-                    <text align="right" length="108">Matična št.: 6688462000</text>
-                    #end 
-                </line>
-        	<line size="1">
-                    <text align="right" length="108">IBAN: SI56 1010 0005 3632 944</text>
-                </line>
-                <line size="1">
-                    <text align="right" length="108">info@micro-open.si</text>
-                </line>
-        	<line size="1">
-                    <text align="right" length="108">www.micro-open.si</text>
-                </line>
+<!-- ********************************************************************************************************************************************************************************  -->
+<!-- DEKLARACIJA SPREMENLJIVK -->
+    #set( $ime = "Ime podjetja s.p." )
+    #set( $naslov = "Ulica 39" )
+    #set( $posta = "2999, Kraj pošte" )
+    #set( $davcna = "Id za DDV: 837465588" )
+    #set( $maticna = "Matična št.: 800403837465588" )
+    #set( $trr = "TRR: SI56 6754 0987 4354 198" )
+    #set( $telefon = "Tel.: 02 123 45 67" )
+    #set( $faks = "Faks: 02 123 45 99" )
+    #set( $email = "E-pošta: info@podjetje.si" )
+    #set( $www = "Splet: www.micro-open.si" )
+    #set( $krajIzdaje = "Kraj izdaje: Kraj izdaje računa")
+ <!-- DEKLARACIJA LASTNOSTI -->   
+    #set( $stranka = $ticket.getCustomer() )
+    #set( $nazivStranke = "Kupec:" )
+    #set( $lastnosti = $ticket.getProperties() )
+    #set( $zavezanecDDV = true)
+    #set( $tipRacuna = $ticket.ticketType )
+<!-- KONEC DEKLARACIJE -->
+<!-- ********************************************************************************************************************************************************************************  -->
 
-
-	#if (${ticket.ticketType} == 0)
-		<line><text align="left" length="15">Račun:</text><text>${ticket.printId()}</text></line>
-	#end
-
-	#if (${ticket.ticketType} == 1)
-		<line><text align="left" length="15">Vračilo:</text><text>${ticket.printId()}</text></line>
-	#end
-		<line><text align="left" length="15">Datum:</text><text>${ticket.printDate()}</text></line>
-
-
-	#if (${tickettext.place} != ${place})
-		<line><text align="left" length="15">Miza/Soba:</text><text>${place}</text></line>
-	#end
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- INFORMACIJE O PODJETJU IN STRANKI -->
+    <image>Printer.Ticket.Logo</image> 
+    <line></line>           	
+    <line size="2"><text align="right" length="55">${ime}</text></line>
+    <line size="2"><text align="right" length="55">${naslov}</text></line>
+    <line size="2"><text align="right" length="55">${posta}</text></line>
+    <line size="0"><text align="right" length="55">${davcna}</text></line>
+    <line size="0"><text align="right" length="55">${maticna}</text></line>
+    <line size="0">
+        <text align="left" length="55">#if($stranka)${nazivStranke}#end</text>
+        <text bold="true" align="right" length="55">#if($trr.length())${trr}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($stranka.printName())${stranka.printName()}#end</text>
+        <text bold="true" align="right" length="55">#if($telefon.length())${telefon}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($stranka.getAddress())${stranka.getAddress()}#end</text>
+        <text bold="true" align="right" length="55">#if($faks.length())${faks}#end</text>
+    </line> 
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($stranka.getPostal())${stranka.getPostal()}, ${stranka.getCity()}#end</text>
+        <text bold="true" align="right" length="55">#if($email.length())${email}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($stranka.getTaxid())Id za DDV: ${stranka.getTaxid()}#end</text>
+        <text bold="true" align="right" length="55">#if($www.length())${www}#end</text>
+    </line>
+<!-- KONEC – INFORMACIJE O PODJETJU IN STRANKI -->
+<!-- ********************************************************************************************** --> 
+<line></line>      
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- INFORMACIJE O DOKUMENTU – RAČUNU -->
+    #if($ticket.printId()) <!-- ČE JE RAČUN ZAKLUČEN NATISNEMO ID IN PODATKE O RAČUNU -->
+        <line><text bold="true" align="left" length="15">#if(${tipRacuna} == 0)Račun št.:#elseif (${tipRacuna} == 1)Storno št.:#end</text><text>${ticket.printId()}</text></line>
+    #else
+    #end    
         
-		<line><text align="left" length="15">Blagajnik:</text><text>${ticket.printUser()}</text></line>
-		<line></line>
-		<line><text align ="left" length="69">Naziv</text><text align ="right" length="6">% DDV</text><text align ="right" length="8">DDV</text><text align ="right" length="10">Cena</text><text align ="right" length="5">Kol.</text><text align ="right" length="10">Znesek</text></line>
-		<line><text align="left" length="108">------------------------------------------------------------------------------------------------------------</text></line>
-
-#foreach ($ticketline in $ticket.getLines())
-	<line>
-	
-	#if ($ticketline.isProductCom())
-		<text align ="left" length="69">*${ticketline.printName()}</text>
-	#else
-		<text align ="left" length="69">${ticketline.printName()}</text>
-	#end
-                <text align ="right" length="6">${ticketline.printTaxRate()}</text>
-                <text align ="right" length="8">${ticketline.printTax()}</text>
-		<text align ="right" length="10">${ticketline.printPriceTax()}</text>
-		<text align ="right" length="5">x${ticketline.printMultiply()}</text>
-		<text align ="right" length="10">${ticketline.printValue()}</text>
-	</line>
-
-	#if ($ticketline.productAttSetInstId)
-		<line><text align ="left" length="42">${ticketline.productAttSetInstDesc}</text></line>
-	#end
-#end
-	<line><text align="left" length="108">------------------------------------------------------------------------------------------------------------</text></line>
-	<line><text>Št. enot: </text><text align ="left" length="14">${ticket.printArticlesCount()}</text></line>
-
-#foreach ($paymentline in $ticket.payments)
-
-	#if ($paymentline.name == "cash")
-		<line><text bold="true">Gotovina</text></line>
-<!--	       	    <line><text align="left" length="22">Prejeto:</text><text align ="right" length="20">${paymentline.printTendered()}</text></line> -->
-	        <line><text align="left" length="22">Vrnjeno:</text><text align ="right" length="20">${paymentline.printChange()}</text></line>
-	#end
-          	
-	#if ($paymentline.name == "cashrefund")
-            		<line><text bold="true">Storno</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-	
-	#if ($paymentline.name == "magcard")
-		<line><text bold="true">Plačilna kartica</text></line>
-                <line> <text>Vrsta</text></line>
-                <line> 
-                    <text>${paymentline.getCardName()}</text> 
-                </line>                 
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "magcardrefund")
-		<line><text bold="true">Storno - plačilna kartica</text></line>
-                <line> <text>Vrsta</text></line>
-                <line> 
-                    <text>${paymentline.getCardName()}</text> 
-                </line>                 
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "cheque")
-		<line></line>
-		<line><text bold="true">Ček</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "chequerefund")
-		<line></line>
-		<line><text bold="true">Storno - ček</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "paperin")
-		<line></line>
-		<line><text bold="true">Bon</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "paperout")
-		<line></line>
-		<line><text bold="true">Storno - bon</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-
-	#if ($paymentline.name == "free")
-		<line></line>
-		<line><text bold="true">Lastna poraba</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-	
-	#if ($paymentline.name == "debt")
-		<line></line>
-		<line><text bold="true">Dolg</text></line>
-		<line><text align ="right" length="108">${paymentline.printTotal()}</text></line>
-	#end
-        #if ($paymentline.name == "bank")
-		<line></line>
-		<line size="1"><text bold="true">Nakazilo na TRR:</text></line>
-		<line size="1"><text align ="left" length="50">IBAN: SI56 1010 0005 3632 944</text><text align ="right" length="58">${paymentline.printTotal()}</text></line>
-	#end
-#end
-
-	<line></line>
-	<line size="1"><text align ="left" length="16" bold="true">Za plačilo</text><text align ="right" length="92" bold="true">${ticket.printTotal()}</text></line>
-        <line></line>
+        
+        
+        
+    <line><text bold="true" align="left" length="15">Datum izdaje:</text><text>${ticket.printDate()}</text></line>
+    #if ($lastnosti.getProperty("datumValute"))
+        <line><text bold="true" align="left" length="15">Datum valute:</text><text>${lastnosti.getProperty("datumValute")}</text></line>
+    #end
+    #if ($lastnosti.getProperty("datumStoritve"))
+        <line><text bold="true" align="left" length="15">Datum storitve:</text><text>${lastnosti.getProperty("datumStoritve")}</text></line>
+    #end
+    #if ($lastnosti.getProperty("datumDobave"))
+        <line><text bold="true" align="left" length="15">Datum dobave:</text><text>${lastnosti.getProperty("datumDobave")}</text></line>
+    #end
+    #if ($lastnosti.getProperty("referenca"))
+        <line><text bold="true" align="left" length="15">Referenca:</text><text>${lastnosti.getProperty("referenca")}</text></line>
+    #end
+    <line><text bold="true" align="left" length="15">Izdal:</text><text>${ticket.printUser()}</text></line>
+<!-- KONEC - INFORMACIJE O DOKUMENTU – RAČUNU -->
+<!-- ********************************************************************************************** -->      
 <line></line>
-        <line><text align ="center" length="108">DDV ni obračunan na podlagi 1. odstavka 94. člena ZDDV-1 (nismo zavezanci za DDV)</text></line>
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- POSTAVKE NA RAČUNU -->
+    <line>
+        <text align="left" length="40">Ime postavke</text>
+        <text align="center" length="10">Osnova</text>
+        <text align="center" length="10">% DDV</text>
+        <text align="center" length="10">DDV</text>
+        <text align="center" length="15">Cena z DDV</text>
+        <text align="center" length="10">Kol.</text>
+        <text align="right" length="15">Znesek skupaj</text>
+    </line>
+    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+    #foreach ($ticketline in $ticket.getLines())
+            <line>
+            #if ($ticketline.isProductCom())
+                <text align ="left" length="40">*${ticketline.printName()}</text>
+            #else
+                <text align ="left" length="40">${ticketline.printName()}</text>
+            #end
+                <text align ="right" length="10">${ticketline.printPrice()}</text>
+                <text align ="center" length="10">${ticketline.printTaxRate()}</text>
+                <text align ="right" length="10">${ticketline.printTax()}</text>
+                <text align ="right" length="15">${ticketline.printPriceTax()}</text>
+                <text align ="center" length="10">x${ticketline.printMultiply()}</text>
+                <text align ="right" length="15">${ticketline.printValue()}</text>
+            </line>
+            #if ($ticketline.productAttSetInstId)
+                <line><text align ="left" length="110">${ticketline.productAttSetInstDesc}</text></line>
+            #end
+    #end
+    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+    <line><text>Število enot na računu: </text><text align ="left">${ticket.printArticlesCount()}</text></line>
+<!-- KONEC - POSTAVKE NA RAČUNU -->
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<line></line>
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- PLAČILA - INFORMACIJE -->
+    <line size="2"><text align ="left" length="30">Za plačilo:</text><text align ="right" length="25">${ticket.printTotal()}</text></line>
+    #foreach ($paymentline in $ticket.payments)
+
+            #if ($paymentline.name == "cash")
+                    <line><text align="left" bold="true">Gotovina:</text></line>
+                    <line><text align ="right" length="110" bold="true">${paymentline.printTotal()}</text>
+                </line>
+            #end
+
+            #if ($paymentline.name == "cashrefund")
+                    <line><text bold="true">Storno:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "magcard")
+                    <line><text bold="true">Plačilna kartica:</text></line>
+                    <line> <text>Vrsta</text></line>
+                    <line> 
+                        <text>${paymentline.getCardName()}</text> 
+                    </line>                 
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "magcardrefund")
+                    <line><text bold="true">Storno - plačilna kartica:</text></line>
+                    <line> <text>Vrsta</text></line>
+                    <line> 
+                        <text>${paymentline.getCardName()}</text> 
+                    </line>                 
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "cheque")
+                    <line></line>
+                    <line><text bold="true">Ček:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "chequerefund")
+                    <line></line>
+                    <line><text bold="true">Storno - ček:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "paperin")
+                    <line></line>
+                    <line><text bold="true">Bon:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "paperout")
+                    <line></line>
+                    <line><text bold="true">Storno - bon:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "free")
+                    <line></line>
+                    <line><text bold="true">Lastna poraba:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+
+            #if ($paymentline.name == "debt")
+                    <line></line>
+                    <line><text bold="true">Dolg:</text></line>
+                    <line><text align ="right" length="110">${paymentline.printTotal()}</text></line>
+            #end
+            #if ($paymentline.name == "bank")
+                    <line></line>
+                    <line size="1"><text bold="true">Nakazilo na TRR:</text></line>
+                    <line size="1"><text align ="left" length="50">${trr}</text><text align ="right" length="60">${ticket.printTotal()}</text></line>
+            #end
+    #end
+<!-- KONEC - PLAČILA - INFORMACIJE -->
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<line></line>
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- POROČILO DDV -->
+    #if($$zavezanecDDV)  <!-- ČE SMO ZAVEZANEC NATISNEMO POROČILO DDV -->
+        <line><text align ="left"  length="20">Osnova za DDV:</text><text align ="right" length="90">${ticket.printSubTotal()}</text></line>
+        <line><text align ="left" length="20">DDV:</text><text align ="right" length="90">${ticket.printTax()}</text></line>
+        #if($ticket.taxes.isEmpty() == "false") <!-- TISKANJE PODROBNOSTI DAVKOV RAČUNA -->
+        <line></line>
+        <line>
+            <text bold="true" align ="left" length="20">Poročilo DDV</text>
+            <text bold="true" align ="right" length="15">Osnova</text>
+            <text bold="true" align ="right" length="15">DDV</text>
+        </line>
+        <line><text align="left" length="50">––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+        
+            #foreach ($taxinfo in $taxes)
+                #set( $taxline = $ticket.getTaxLine($taxinfo))
+                #if($taxline.getTax() > 0) <!-- TISKANJE DAVKOV NOVEGA RAČUNA -->
+                    <line>
+                        <text align ="left" length="20">${taxline.getTaxInfo()}</text>
+                        <text align ="right" length="15">${taxline.printSubTotal()}</text>
+                        <text align ="right" length="15">${taxline.printTax()}</text>
+                    </line>
+                #elseif ($taxinfo.getTax() > 0)<!-- TISKANJE DAVKOV STAREGA RAČUNA -->              
+                    <line>
+                        <text align ="left" length="20">${taxinfo.getName()}</text>
+                        <text align ="right" length="15">${taxinfo.printSubTotal()}</text>
+                        <text align ="right" length="15">${taxinfo.printTax()}</text>
+                    </line>
+                #end
+            #end
+        #end <!-- KONEC - TISKANJE DAVKOV RAČUNA -->     
+    #else <!-- ČE NISMO ZAVEZANEC NATISNEMO OBVESTILO -->
+        <line><text align ="center" length="110">DDV ni obračunan na podlagi 1. odstavka 94. člena ZDDV-1 (nismo zavezanci za DDV)</text></line>
+    #end
+<!-- KONEC - POROČILO DDV -->
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<line></line>
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- OBVESTILA NA DNU RAČUNA -->
+        #foreach ($paymentline in $ticket.payments)
+        #if ($paymentline.name == "bank")
+        #end
+    #end
+    <line></line>
+    <line><text align="center" length="110">Hvala za obisk</text></line>
+    <line><text align="center" length="110">Nasvidenje</text></line>
+
+
 </ticket>
-
-
-
 </output>
+<!-- ************* POMOČ ZA NASTAVITEV RAČUNA ************************************************************************************ -->
+<!--
 
-<!-- DODATKI ZA RAČUN -->
+
+
+
+
+-->
+<!-- ************* DODATKI ZA RAČUN ************************************************************************************ -->
+<!--
+**** ZA PODJETJA, KI NISO DAVČNI ZAVEZANCI ****
+ 
+
+
+
+-->
