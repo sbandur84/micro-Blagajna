@@ -37,8 +37,8 @@
     <line size="2"><text align="right" length="55">${ime}</text></line>
     <line size="2"><text align="right" length="55">${naslov}</text></line>
     <line size="2"><text align="right" length="55">${posta}</text></line>
-    <line size="0"><text align="right" length="55">${davcna}</text></line>
-    <line size="0"><text align="right" length="55">${maticna}</text></line>
+    <line size="0"><text align="right" length="110">${davcna}</text></line>
+    <line size="0"><text align="right" length="110">${maticna}</text></line>
     <line size="0">
         <text align="left" length="55">#if($stranka)${nazivStranke}#end</text>
         <text bold="true" align="right" length="55">#if($trr.length())${trr}#end</text>
@@ -64,28 +64,29 @@
 <line></line>      
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <!-- INFORMACIJE O DOKUMENTU – RAČUNU -->
-    #if($ticket.printId()) <!-- ČE JE RAČUN ZAKLUČEN NATISNEMO ID IN PODATKE O RAČUNU -->
-        <line><text bold="true" align="left" length="15">#if(${tipRacuna} == 0)Račun št.:#elseif (${tipRacuna} == 1)Storno št.:#end</text><text>${ticket.printId()}</text></line>
-    #else
+    #if($ticket.printId()=="") <!-- ČE JE RAČUN NI ZAKLUČEN NATISNEMO LASTNOST "vrstaDokumenta" -->        
+        <line size="2"><text bold="true" align="left" length="30">${lastnosti.getProperty("vrstaDokumenta")}</text></line>
+    #else   <!-- ČE JE RAČUN ZAKLUČEN NATISNEMO ID IN PODATKE O RAČUNU --> 
+        <line size="2"><text bold="true" align="left" length="30">#if(${tipRacuna} == 0)Račun št.:#elseif (${tipRacuna} == 1)Storno št.:#end</text><text>${ticket.printId()}</text></line>
     #end    
         
         
         
         
-    <line><text bold="true" align="left" length="15">Datum izdaje:</text><text>${ticket.printDate()}</text></line>
+    <line><text bold="true" align="left" length="20">Datum izdaje:</text><text>${ticket.printDate()}</text></line>
     #if ($lastnosti.getProperty("datumValute"))
-        <line><text bold="true" align="left" length="15">Datum valute:</text><text>${lastnosti.getProperty("datumValute")}</text></line>
+        <line><text bold="true" align="left" length="20">Datum valute:</text><text>${lastnosti.getProperty("datumValute")}</text></line>
     #end
     #if ($lastnosti.getProperty("datumStoritve"))
-        <line><text bold="true" align="left" length="15">Datum storitve:</text><text>${lastnosti.getProperty("datumStoritve")}</text></line>
+        <line><text bold="true" align="left" length="20">Datum storitve:</text><text>${lastnosti.getProperty("datumStoritve")}</text></line>
     #end
     #if ($lastnosti.getProperty("datumDobave"))
-        <line><text bold="true" align="left" length="15">Datum dobave:</text><text>${lastnosti.getProperty("datumDobave")}</text></line>
+        <line><text bold="true" align="left" length="20">Datum dobave:</text><text>${lastnosti.getProperty("datumDobave")}</text></line>
     #end
     #if ($lastnosti.getProperty("referenca"))
-        <line><text bold="true" align="left" length="15">Referenca:</text><text>${lastnosti.getProperty("referenca")}</text></line>
+        <line><text bold="true" align="left" length="20">Referenca:</text><text>${lastnosti.getProperty("referenca")}</text></line>
     #end
-    <line><text bold="true" align="left" length="15">Izdal:</text><text>${ticket.printUser()}</text></line>
+    <line><text bold="true" align="left" length="20">Izdal:</text><text>${ticket.printUser()}</text></line>
 <!-- KONEC - INFORMACIJE O DOKUMENTU – RAČUNU -->
 <!-- ********************************************************************************************** -->      
 <line></line>
