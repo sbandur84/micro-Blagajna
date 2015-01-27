@@ -65,7 +65,7 @@
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <!-- INFORMACIJE O DOKUMENTU – RAČUNU -->
     #if($ticket.printId()=="") <!-- ČE JE RAČUN NI ZAKLUČEN NATISNEMO LASTNOST "vrstaDokumenta" -->        
-        <line size="2"><text bold="true" align="left" length="30">${lastnosti.getProperty("vrstaDokumenta")}</text></line>
+        <line size="2"><text bold="true" align="left" length="55">${lastnosti.getProperty("vrstaDokumenta")}</text></line>
     #else   <!-- ČE JE RAČUN ZAKLUČEN NATISNEMO ID IN PODATKE O RAČUNU --> 
         <line size="2"><text bold="true" align="left" length="30">#if(${tipRacuna} == 0)Račun št.:#elseif (${tipRacuna} == 1)Storno št.:#end</text><text>${ticket.printId()}</text></line>
     #end    
