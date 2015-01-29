@@ -101,7 +101,7 @@
             <line size="1"><text>${paymentline.getCardName()}</text></line>    
             <line><text>${paymentline.printCardNumber()}</text></line>
             <line></line>
-            <line size="1"><text align="left" length="10">KOLIČINA</text>
+            <line size="1"><text align="left" length="10">Za plačilo</text>
                 <text align ="right" length="32">${ticket.printTotal()}</text></line>
             <line><text>Merchant  : </text><text>**123456</text></line>                
             <line><text>Tranx ID  : </text><text>${paymentline.printTransactionID()}</text></line>
@@ -110,12 +110,12 @@
         #end
 
 	#if ($paymentline.name == "magcardrefund")
-            <line size="1"><text align="center" length="42" bold="true">STORNO - PLAČILNA KARTICA</text></line>
+            <line size="1"><text align="center" length="42" bold="true">Storno - plačilna kartica</text></line>
             <line size="1"><text>${paymentline.getCardName()}</text></line>    
             <line><text>${paymentline.printCardNumber()}</text></line>
             <line></line>
             <line size="1"><text align="left" length="10">KOLIČINA</text>
-                <text align ="right" length="32">${paymentline.printTotal()}</text></line>
+                <text align ="right" length="32">${ticket.printTotal()}</text></line>
             <line><text>Merchant  : </text><text>**123456</text></line>                
             <line><text>Tranx ID  : </text><text>${paymentline.printTransactionID()}</text></line>
             <line><text>Auth Code : </text><text>${paymentline.printAuthorization()}</text></line>

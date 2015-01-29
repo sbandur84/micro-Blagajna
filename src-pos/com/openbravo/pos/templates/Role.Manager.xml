@@ -69,6 +69,10 @@
     <class name="button.opendrawer"/>
     <class name="button.setperson"/>
     
+    <!-- ADVANCED TICKET PROPERTIES EDITOR – script in TEMPLATES use with Printer.A4.Ticket.company.xml  -->
+    <!-- <class name="button.TicketPropertiesEdit"/>  -->
+    <!-- <class name="script.TicketPropertiesEdit"/>  -->
+    
 <!-- Additional button scripts -->
     <class name="button.linediscount"/>
     <class name="button.sendorder"/>
