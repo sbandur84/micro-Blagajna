@@ -163,23 +163,23 @@
 	<line><text align ="left" length="16">DDV:</text><text align ="right" length="26">${ticket.printTax()}</text></line>
 	<line></line>
 <line></line>
-	<line ><text bold="true">POROČILO DDV</text></line>
-<line><text align="left" length="42">------------------------------------------</text></line>
-
+<line></line>
 
         <line>
-            <text bold="true" align ="left" length="18">Stopnja DDV</text>
+            <text bold="true" align ="left" length="18">Poročilo DDV</text>
             <text bold="true" align ="right" length="12">Osnova</text>
             <text bold="true" align ="right" length="12">DDV</text>
         </line>
 <line><text align="left" length="42">------------------------------------------</text></line>
 
-#foreach ($taxinfo in $taxes)
+#foreach ($taxline in $ticket.getTaxLines())
+	#if($taxline.getTax()>0)
         <line>
-            <text align ="left" length="18">${taxinfo.printTaxName()}</text>
-            <text align ="right" length="12">${taxinfo.printSubTotal()}</text>
-            <text align ="right" length="12">${taxinfo.printTax()}</text>
+            <text align ="left" length="18">${taxline.getName()}</text>
+            <text align ="right" length="12">${taxline.printSubTotal()}</text>
+            <text align ="right" length="12">${taxline.printTax()}</text>
         </line>
+	#end
 #end
 
 	<line></line>

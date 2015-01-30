@@ -155,9 +155,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         m_jButtonCancel = new javax.swing.JButton();
         m_jButtonReset = new javax.swing.JButton();
@@ -240,7 +237,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(350, 34));
-        jPanel1.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Račun", "Informativni predračun", "Predračun" }));
@@ -250,7 +247,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel1);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel2.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel2.setText("Datum storitve");
@@ -284,7 +281,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel2);
 
-        jPanel7.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel7.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel3.setText("Datum dobave");
@@ -317,7 +314,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel7);
 
-        jPanel8.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel8.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel4.setText("Datum valute");
@@ -350,7 +347,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel8);
 
-        jPanel9.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel9.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel5.setText("Referenca");
@@ -363,16 +360,19 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel9);
 
-        jPanel11.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel11.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.LINE_AXIS));
 
         jCheckBox1.setText("76.a člen");
+        jCheckBox1.setPreferredSize(new java.awt.Dimension(120, 23));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
         jPanel11.add(jCheckBox1);
+
+        jPanel12.setPreferredSize(new java.awt.Dimension(0, 10));
         jPanel11.add(jPanel12);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -382,6 +382,8 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jLabel1.setMinimumSize(new java.awt.Dimension(70, 15));
         jLabel1.setPreferredSize(new java.awt.Dimension(70, 15));
         jPanel11.add(jLabel1);
+
+        jPanel13.setPreferredSize(new java.awt.Dimension(0, 10));
         jPanel11.add(jPanel13);
 
         jSlider1.setMaximum(1);
@@ -395,7 +397,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel11);
 
-        jPanel14.setPreferredSize(new java.awt.Dimension(350, 40));
+        jPanel14.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel6.setText("Oznaka");
@@ -545,7 +547,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     }//GEN-LAST:event_m_jButtonResetActionPerformed
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -561,14 +562,12 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
