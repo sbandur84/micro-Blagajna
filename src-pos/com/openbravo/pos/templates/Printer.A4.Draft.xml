@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<output>
+
+<display>
+	<line><text align="left" length="10">Skupaj</text><text align="right" length="10">${ticket.printTotal()}</text></line>
+	<line><text align="center" length="20">Hvala za nakup</text></line>
+</display>
+
+<ticket>
+<!-- ********************************************************************************************************************************************************************************  -->
+<!-- DEKLARACIJA KONSTANT -->
+    <!-- DEKLARACIJA PODATKOV O PODJETJU -->
+    #set( $info-company-Name = "Ime podjetja s.p." )
+    #set( $info-company-Address = "Ulica 39" )
+    #set( $info-company-Postal = "2999, Kraj pošte" )
+    #set( $info-company-Taxid = "837465588" )
+    #set( $info-company-Id = "Matična št.: 800403837465588" )
+    #set( $info-company-Bank-AccountNr = "TRR: SI56 6754 0987 4354 198" )
+    #set( $info-company-Phone = "Tel.: 02 123 45 67" )
+    #set( $info-company-Fax = "Faks: 02 123 45 99" )
+    #set( $info-company-Email = "E-pošta: info@podjetje.si" )
+    #set( $info-company-Web = "Splet: www.micro-open.si" )
+    #set( $info-company-CurrentLocation = "Kraj izdaje: Kraj izdajanja računov")
+    #set( $info-company-payment-Creditcard-Merchantid = "**mojIDtrgovca")
+    <!-- KONEC - DEKLARACIJA PODATKOV O PODJETJU -->
+    <!-- DRUGE INFORMACIJE NA RAČUNU -->
+    #set( $info-ticket-bottom-BankInfo1="")
+    #set( $info-ticket-bottom-BankInfo2="")
+    #set( $info-ticket-bottom-BankInfo3="")
+    #set( $info-ticket-bottom-BankInfo4="")
+    #set( $info-ticket-bottom-BankInfo5="")
+    #set( $info-ticket-bottom-BankInfo6="")
+    #set( $info-ticket-bottom-Info1="")
+    #set( $info-ticket-bottom-Info2="")
+    #set( $info-ticket-bottom-Info3="")
+    #set( $info-description-si-Tax-Law76a = "Obračun DDV je predmet obrnjene davčne obveznosti po 76.a členu ZDDV-1")
+    #set( $info-description-si-Tax-Law94-1 = 'DDV ni obračunan na podlagi 1. odstavka 94. člena ZDDV-1 (nismo zavezanci za DDV)')
+    <!-- KONEC - DRUGE INFORMACIJE NA RAČUNU -->
+    <!-- DEKLARACIJA UPOREBLJENIH IZRAZOV NA RAČUNU -->
+    
+    #set( $label-Taxid = "Id za DDV: " )
+    #set( $label-Ticketdate = "Datum izdaje:" )
+    #set( $label-Servicedate = "Datum storitve:" )
+    #set( $label-Deliverydate = "Datum dobave:" )
+    #set( $label-Cashdate = "Datum valute:" )
+    #set( $label-Reference = "Referenca:" )
+    #set( $label-Username = "Izdal:" )
+    #set( $label-Refund = "Storno št.:")
+    #set( $label-Ticketnumber = "Račun št.:" )
+    #set( $label-Preinvoice = "Informativni predračun" )
+    #set( $label-Customer = "Kupec:" )
+    #set( $label-item-Name = "Ime postavke")
+    #set( $label-item-Baseprice = "Osnova")
+    #set( $label-item-Taxcat = "% DDV")
+    #set( $label-item-Pricetax = "Cena z DDV")
+    #set( $label-item-Qtty = "Kol.")
+    #set( $label-item-Taxtotal = "DDV skupaj")
+    #set( $label-item-Pricetotal = "Znesek skupaj")
+    #set( $label-item-Totalitems= "Število enot na računu:")
+    #set( $label-payment-Total = "Skupaj:")
+    #set( $label-payment-Tickettotal = "Za plačilo:")
+    #set( $label-payment-Cash = "Gotovina:")
+    #set( $label-payment-Cashrefund = "Storno:")
+    #set( $label-payment-Creditcard = "Plačilna kartica:")
+    #set( $label-payment-Creditcardrefund = "Storno - Plačilna kartica:")
+    #set( $label-payment-Creditcard.Merchant = "Trgovec: ")
+    #set( $label-payment-Creditcard.Transid = "ID transakcije:") 
+    #set( $label-payment-Creditcard.Authorization = "Avtorizacija:")
+    #set( $label-tax-Label = "Obračun DDV")
+    #set( $label-tax-Base = "Osnova")
+    #set( $label-tax-Tax = "DDV")
+    #set( $label-tax-TaxBase = "Osnova za DDV:")
+    
+<!-- KONEC - DEKLARACIJA KONSTANT -->
+
+ <!-- DEKLARACIJA LASTNOSTI -->
+    #set( $customer = $ticket.getCustomer() )
+    #set( $ticketProperties = $ticket.getProperties() )
+    #set( $customerPrinttax = "true")
+<!-- KONEC DEKLARACIJE -->
+
+<!-- DEKLARACIJA IZVEDBE SKRIPTE -->   
+    <!-- id in tip dokumenta --> 
+
+            
+<!-- ********************************************************************************************************************************************************************************  -->
+#if( $ticketProperties.getProperty("DOCTYPE" == "Prevzemnica)
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- INFORMACIJE O PODJETJU IN STRANKI -->
+    <image>Printer.Ticket.Logo</image> 
+    <line></line>           	
+    <line size="2"><text align="right" length="55">${info-company-Name}</text></line>
+    <line size="2"><text align="right" length="55">${info-company-Address}</text></line>
+    <line size="2"><text align="right" length="55">${info-company-Postal}</text></line>
+    <line size="0"><text align="right" length="110">${label-Taxid} ${info-company-Taxid}</text></line>
+    <line size="0"><text align="right" length="110">${info-company-Id}</text></line>
+    <line size="0">
+        <text align="left" length="55">#if($customer)${label-Customer}#end</text>
+        <text align="right" length="55">#if($info-company-Bank-AccountNr.length())${info-company-Bank-AccountNr}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($customer.printName())${customer.printName()}#end</text>
+        <text align="right" length="55">#if($info-company-Phone.length())${info-company-Phone}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($customer.getAddress())${customer.getAddress()}#end</text>
+        <text align="right" length="55">#if($info-company-Fax.length())${info-company-Fax}#end</text>
+    </line> 
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($customer.getPostal())${customer.getPostal()}, ${customer.getCity()}#end</text>
+        <text align="right" length="55">#if($info-company-Email.length())${info-company-Email}#end</text>
+    </line>
+    <line size="0">
+        <text bold="true" align="left" length="55">#if($customer.getTaxid())${label-Taxid}${customer.getTaxid()}#end</text>
+        <text align="right" length="55">#if($info-company-Web.length())${info-company-Web}#end</text>
+    </line>
+<!-- KONEC – INFORMACIJE O PODJETJU IN STRANKI -->
+<!-- ********************************************************************************************** --> 
+<line></line>
+<line></line>       
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- INFORMACIJE O DOKUMENTU – RAČUNU -->
+    <!-- ČE JE RAČUN ZAKLUČEN NATISNEMO ID IN PODATKE O RAČUNU drugače pa tip dokumenta iz lastnosti računa --> 
+    <line size="2">
+            <text bold="true" align="left" length="20">Prevzemnica: </text>
+
+        <text bold="true" align="left" length="20">${$ticketProperties.getProperty("PERSON")}</text>
+    </line>
+    <line><text bold="true" align="left" length="40">Izdano dne:</text><text>${ticket.printDate()}</text></line>
+    #if ($ticketProperties.getProperty("DELIVERYDATE"))
+        <line><text bold="true" align="left" length="40">${label-Deliverydate}</text><text>${ticketProperties.getProperty("DELIVERYDATE")}</text></line>
+    #end
+    
+    #if ($ticketProperties.getProperty("REFERENCE"))
+        <line><text bold="true" align="left" length="40">${label-Reference}</text><text>${ticketProperties.getProperty("REFERENCE")}</text></line>
+    #end
+    
+    <line><text bold="true" align="left" length="40">${label-Username}</text><text>${ticket.printUser()}</text></line>
+<!-- KONEC - INFORMACIJE O DOKUMENTU – RAČUNU -->
+<!-- ********************************************************************************************** -->      
+<line></line>
+<!-- ******************************************************************************************************************************************************************************************** -->      
+<!-- POSTAVKE NA RAČUNU -->
+    <line>
+         <text bold = "true" align="left" length="80">${label-item-Name}</text>
+        <text bold = "true" align="center" length="30">${label-item-Qtty}</text>
+    </line>
+    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+    #foreach ($ticketline in $ticket.getLines())
+            <line>
+            #if ($ticketline.isProductCom())
+                <text align ="left" length="80">*${ticketline.printName()}</text>
+            #else
+                <text align ="left" length="80">${ticketline.printName()}</text>
+            #end               
+                <text align ="right" length="30">x${ticketline.printMultiply()}</text>
+            </line>
+            #if ($ticketline.productAttSetInstId)
+                <line><text align ="left" length="110">${ticketline.productAttSetInstDesc}</text></line>
+            #end
+    #end
+    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+<!-- KONEC - POSTAVKE NA RAČUNU -->
+<!-- ******************************************************************************************************************************************************************************************** -->      
+#end
+</ticket>
+</output>
+
