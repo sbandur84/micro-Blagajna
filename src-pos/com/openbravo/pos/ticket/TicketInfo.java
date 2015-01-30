@@ -61,16 +61,6 @@ public final class TicketInfo implements SerializableRead, Externalizable {
      *
      */
     public static final int RECEIPT_NOSALE = 3;
-    
-    /**
-     *
-     */
-    public static final int RECEIPT_DRAFT = 4;
-    
-    /**
-     *
-     */
-    public static final int DOCUMENT = 5;
 
     private static final DateFormat m_dateformat = new SimpleDateFormat("hh:mm");
 
@@ -674,6 +664,7 @@ public final class TicketInfo implements SerializableRead, Externalizable {
     public TicketTaxInfo[] getTaxLines() {
 
         Map<String, TicketTaxInfo> m = new HashMap<>(); // JG June 2102 diamond inference
+
         TicketLineInfo oLine;
         for (Iterator<TicketLineInfo> i = m_aLines.iterator(); i.hasNext();) {
             oLine = i.next();
@@ -800,8 +791,6 @@ public final class TicketInfo implements SerializableRead, Externalizable {
     public String printArticlesCount() {
         return Formats.DOUBLE.formatValue(getArticlesCount());
     }
-    
-    
 
     /**
      *
@@ -868,9 +857,4 @@ public final class TicketInfo implements SerializableRead, Externalizable {
 	oldTicket = otState;
 }
     
-        // add seba --  Apache.Velocity - ticket printer helper function
-        public static final String formatCURRENCY(double cash){
-            return Formats.CURRENCY.formatValue(cash);
-        }
-
 }

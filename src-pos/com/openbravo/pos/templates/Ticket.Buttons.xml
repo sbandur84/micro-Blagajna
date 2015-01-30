@@ -26,12 +26,8 @@
 <configuration>
 <!-- Sales Ticket Button Bar - Show icons **************************************** -->
 	<!-- SET Waiter's name (Default=DISABLED) -->
-	<button name="button.tablenamebutton" key="button.setperson" image="img.user" code="script.SetPerson"/>
-        
-        <!-- SET ticket advanced properties (Default=DISABLED) -->
-	<!-- S<button name="button.TicketPropertie" key="button.TicketPropertiesEdit" image="com.openbravo.images.reports" code="script.TicketPropertiesEdit"/>  -->
-        
-        <!-- SET Sales Ticket Refund Item (Default=DISABLED) -->
+	<button name="button.tablenamebutton" key="button.setperson" image="img.user" code="script.SetPerson"/><!-- SET Sales Ticket Refund Item (Default=DISABLED) -->
+	
         <!-- <button key="button.refundit" image="img.refundit" code="script.Refundit"/> -->
 
 	<!-- SET Sales Ticket ServiceCharge (Default=DISABLED) -->

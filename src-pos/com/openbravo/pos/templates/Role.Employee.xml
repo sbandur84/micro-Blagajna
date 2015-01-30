@@ -55,10 +55,6 @@
     <!--    <class name="payment.debt"/> -->
     <!--    <class name="sales.PrintKitchen"/>  -->
     <class name="script.SetPerson"/>
-    
-    <!-- ADVANCED TICKET PROPERTIES EDITOR – script in TEMPLATES use with Printer.A4.Ticket.company.xml  -->
-    <!-- <class name="button.TicketPropertiesEdit"/>  -->
-    <!-- <class name="script.TicketPropertiesEdit"/>  -->
 
 <!-- Standard button scripts -->
     <class name="button.totaldiscount"/>
