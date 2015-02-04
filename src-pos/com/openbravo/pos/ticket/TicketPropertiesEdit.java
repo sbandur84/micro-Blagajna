@@ -165,17 +165,23 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
+        jPanel17 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -192,12 +198,17 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         setTitle(AppLocal.getIntString("caption.ticketproperties")); // NOI18N
 
+        jPanel3.setMinimumSize(new java.awt.Dimension(300, 50));
+        jPanel3.setPreferredSize(new java.awt.Dimension(300, 60));
+
         m_jButtonCancel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/cancel.png"))); // NOI18N
-        m_jButtonCancel.setText(AppLocal.getIntString("Button.Cancel")); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("pos_messages"); // NOI18N
+        m_jButtonCancel.setToolTipText(bundle.getString("Button.Cancel")); // NOI18N
         m_jButtonCancel.setFocusPainted(false);
         m_jButtonCancel.setFocusable(false);
         m_jButtonCancel.setMargin(new java.awt.Insets(8, 16, 8, 16));
+        m_jButtonCancel.setPreferredSize(new java.awt.Dimension(80, 50));
         m_jButtonCancel.setRequestFocusEnabled(false);
         m_jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,9 +220,11 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         m_jButtonReset.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jButtonReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/reload.png"))); // NOI18N
         m_jButtonReset.setText(AppLocal.getIntString("Button.Reset")); // NOI18N
+        m_jButtonReset.setToolTipText(bundle.getString("Button.Reset")); // NOI18N
         m_jButtonReset.setFocusPainted(false);
         m_jButtonReset.setFocusable(false);
         m_jButtonReset.setMargin(new java.awt.Insets(8, 16, 8, 16));
+        m_jButtonReset.setPreferredSize(new java.awt.Dimension(80, 50));
         m_jButtonReset.setRequestFocusEnabled(false);
         m_jButtonReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,10 +235,12 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         m_jButtonOk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/ok.png"))); // NOI18N
-        m_jButtonOk.setText(AppLocal.getIntString("Button.OK")); // NOI18N
+        m_jButtonOk.setText("");
+        m_jButtonOk.setToolTipText(bundle.getString("Button.OK")); // NOI18N
         m_jButtonOk.setFocusPainted(false);
         m_jButtonOk.setFocusable(false);
         m_jButtonOk.setMargin(new java.awt.Insets(8, 16, 8, 16));
+        m_jButtonOk.setPreferredSize(new java.awt.Dimension(80, 50));
         m_jButtonOk.setRequestFocusEnabled(false);
         m_jButtonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +255,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Račun", "Informativni predračun", "Predračun" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Račun", "Informativni predračun", "Predračun", "Oddajnica" }));
         jComboBox1.setSelectedItem("");
         jComboBox1.setPreferredSize(new java.awt.Dimension(189, 30));
         jPanel1.add(jComboBox1);
@@ -258,15 +273,19 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jTextField1.setEditable(false);
         jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
         jPanel2.add(jTextField1);
+        jPanel2.add(jPanel5);
 
         jButton4.setToolTipText("");
-        jButton4.setPreferredSize(new java.awt.Dimension(20, 20));
+        jButton4.setMaximumSize(new java.awt.Dimension(30, 15));
+        jButton4.setMinimumSize(new java.awt.Dimension(30, 15));
+        jButton4.setPreferredSize(new java.awt.Dimension(30, 15));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton4);
+        jPanel2.add(jPanel4);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -292,15 +311,19 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jTextField2.setEditable(false);
         jTextField2.setPreferredSize(new java.awt.Dimension(100, 30));
         jPanel7.add(jTextField2);
+        jPanel7.add(jPanel10);
 
         jButton5.setToolTipText("");
-        jButton5.setPreferredSize(new java.awt.Dimension(20, 20));
+        jButton5.setMaximumSize(new java.awt.Dimension(30, 15));
+        jButton5.setMinimumSize(new java.awt.Dimension(30, 15));
+        jButton5.setPreferredSize(new java.awt.Dimension(30, 15));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jPanel7.add(jButton5);
+        jPanel7.add(jPanel15);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -325,15 +348,19 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jTextField3.setEditable(false);
         jTextField3.setPreferredSize(new java.awt.Dimension(100, 30));
         jPanel8.add(jTextField3);
+        jPanel8.add(jPanel16);
 
         jButton6.setToolTipText("");
-        jButton6.setPreferredSize(new java.awt.Dimension(20, 20));
+        jButton6.setMaximumSize(new java.awt.Dimension(30, 15));
+        jButton6.setMinimumSize(new java.awt.Dimension(30, 15));
+        jButton6.setPreferredSize(new java.awt.Dimension(30, 15));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
         jPanel8.add(jButton6);
+        jPanel8.add(jPanel17);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -405,14 +432,14 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel14.add(jLabel6);
 
-        jTextField5.setPreferredSize(new java.awt.Dimension(100, 30));
+        jTextField5.setPreferredSize(new java.awt.Dimension(20, 10));
         jPanel14.add(jTextField5);
 
         jPanel6.add(jPanel14);
 
         getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(368, 406));
+        setSize(new java.awt.Dimension(322, 413));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -562,12 +589,18 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

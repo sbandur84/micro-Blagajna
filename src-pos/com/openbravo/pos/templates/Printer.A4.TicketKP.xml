@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- INFO HOW TO PROGRAM
-Properties ticketProperties;
-    public static final String DOCTYPE = "DOCTYPE";
-    public static final String CASHDATE = "CASHDATE";
-    public static final String SERVICEDATE = "SERVICEDATE";
-    public static final String DELIVERYDATE = "DELIVERYDATE";
-    public static final String REFERENCE = "REFERENCE";
-    public static final String REVERSETAX = "REVERSETAX";
-    public static final String PERSON = "person";
-    public static final String TAX_22 = "DDV 22 %";
-    public static final String TAX_9_5 = "DDV 9,5 %";
--->
+
 <output>
 
 <display>
@@ -22,27 +11,27 @@ Properties ticketProperties;
 <!-- ********************************************************************************************************************************************************************************  -->
 <!-- DEKLARACIJA KONSTANT -->
     <!-- DEKLARACIJA PODATKOV O PODJETJU -->
-    #set( $info-company-Name = "Ime podjetja s.p." )
-    #set( $info-company-Address = "Ulica 39" )
-    #set( $info-company-Postal = "2999, Kraj pošte" )
-    #set( $info-company-Taxid = "837465588" )
-    #set( $info-company-Id = "Matična št.: 800403837465588" )
-    #set( $info-company-Bank-AccountNr = "TRR: SI56 6754 0987 4354 198" )
-    #set( $info-company-Phone = "Tel.: 02 123 45 67" )
-    #set( $info-company-Fax = "Faks: 02 123 45 99" )
-    #set( $info-company-Email = "E-pošta: info@podjetje.si" )
-    #set( $info-company-Web = "Splet: www.micro-open.si" )
-    #set( $info-company-CurrentLocation = "Kraj izdaje: Kraj izdajanja računov")
+    #set( $info-company-Name = "KAMNOSEŠTVO DRAGO PETROVIČ S.P." )
+    #set( $info-company-Address = "MARJETA NA DRAVSKEM POLJU 57" )
+    #set( $info-company-Postal = "2206, MARJETA NA DRAVSKEM POLJU" )
+    #set( $info-company-Taxid = "SI 50961209" )
+    #set( $info-company-Id = "Matična št.: 5309749000" )
+    #set( $info-company-Bank-AccountNr = "IBAN: SI56 2410 0900 3946 118" )
+    #set( $info-company-Phone = "Tel.: 02 783 90 39" )
+    #set( $info-company-Fax = "Faks: 02 783 90 28" )
+    #set( $info-company-Email = "E-pošta:  info@kamnosestvo-petrovic.si" )
+    #set( $info-company-Web = "Splet: www.kamnosestvo-petrovic.si" )
+    #set( $info-company-CurrentLocation = "Kraj izdaje: Slovenja vas 75, 2288 Hajdina")
     #set( $info-company-payment-Creditcard-Merchantid = "**mojIDtrgovca")
     <!-- KONEC - DEKLARACIJA PODATKOV O PODJETJU -->
     <!-- DRUGE INFORMACIJE NA RAČUNU -->
-    #set( $info-ticket-bottom-BankInfo1="")
-    #set( $info-ticket-bottom-BankInfo2="")
-    #set( $info-ticket-bottom-BankInfo3="")
-    #set( $info-ticket-bottom-BankInfo4="")
-    #set( $info-ticket-bottom-BankInfo5="")
+    #set( $info-ticket-bottom-BankInfo1="Od dneva zapadlosti računa se obračunajo zamudne obresti v skladu z Zakonom o obrestnih merah")
+    #set( $info-ticket-bottom-BankInfo2="( Uradni list RS, 14/92 in 13/93 ). Obresti po po obračunu so plačljive v 8. dneh, po tem roku bomo dolg")
+    #set( $info-ticket-bottom-BankInfo3="izterjali preko sodišča, brez predhodnega opomina.")
+    #set( $info-ticket-bottom-BankInfo4="V primeru spora je pristojno Temeljno sodišče v Mariboru. Reklamacije upoštevamo ob prevzemu računa in blaga!")
+    #set( $info-ticket-bottom-BankInfo5="Do končnega plačila zneska kupnine je blago last podjetja Kamnoseštva Drago Petrovič s.p. !")
     #set( $info-ticket-bottom-BankInfo6="")
-    #set( $info-ticket-bottom-Info1="")
+    #set( $info-ticket-bottom-Info1="DELAVNICA: Slovenja vas 75, 2288 Hajdina")
     #set( $info-ticket-bottom-Info2="")
     #set( $info-ticket-bottom-Info3="")
     #set( $info-description-si-Tax-Law76a = "Obračun DDV je predmet obrnjene davčne obveznosti po 76.a členu ZDDV-1")
@@ -128,7 +117,6 @@ Properties ticketProperties;
     </line>
 <!-- KONEC – INFORMACIJE O PODJETJU IN STRANKI -->
 <!-- ********************************************************************************************** --> 
-<line></line>
 <line></line>       
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <!-- INFORMACIJE O DOKUMENTU – RAČUNU -->
@@ -177,7 +165,7 @@ Properties ticketProperties;
         <text bold = "true" align="center" length="15">${label-item-Taxtotal}</text>
         <text bold = "true" align="right" length="15">${label-item-Pricetotal}</text>
     </line>
-    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+    <line><text align="left" length="110">------------------------------------------------------------------------------------------------------------------------</text></line>
     #foreach ($ticketline in $ticket.getLines())
             <line>
             #if ($ticketline.isProductCom())
@@ -195,9 +183,10 @@ Properties ticketProperties;
             #if ($ticketline.productAttSetInstId)
                 <line><text align ="left" length="110">${ticketline.productAttSetInstDesc}</text></line>
             #end
+	
     #end
-    <line><text align="left" length="110">––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
-    <line><text>${label-item-Totalitems}</text><text align ="left">${ticket.printArticlesCount()}</text></line>
+   <line><text align="left" length="110">------------------------------------------------------------------------------------------------------------------------</text></line>
+     <line><text>${label-item-Totalitems}</text><text align ="left">${ticket.printArticlesCount()}</text></line>
 <!-- KONEC - POSTAVKE NA RAČUNU -->
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <line></line>
@@ -299,7 +288,8 @@ Properties ticketProperties;
             <text bold="true" align ="right" length="15">${label-tax-Base}</text>
             <text bold="true" align ="right" length="15">${label-tax-Tax}</text>
         </line>
-        <line><text align="left" length="50">––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+       <line><text align="left" length="50">------------------------------------------------------------</text></line>
+
         #if($ticketProperties.getProperty("REVERSETAX").contains("22"))
             #set($taxcalc = $ticket.getSubTotal() * 0.22)
             <line>
@@ -329,7 +319,7 @@ Properties ticketProperties;
             <text bold="true" align ="right" length="15">${label-tax-Base}</text>
             <text bold="true" align ="right" length="15">${label-tax-Tax}</text>
             </line>
-            <line><text align="left" length="50">––––––––––––––––––––––––––––––––––––––––––––––––––</text></line>
+            <line><text align="left" length="50">------------------------------------------------------------</text></line>
             #foreach ($taxinfo in $ticket.getTaxLines())
                 #if ($taxinfo.getTax() > 0)         
                     <line>
@@ -345,22 +335,28 @@ Properties ticketProperties;
 <!-- KONEC - POROČILO DDV -->
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <line></line>
+<line></line>
+<line></line>
+<line></line>
+<line></line>
+<line></line>
+<line><text align ="center" length="55"></text><text align ="right" length="55">--------------------------------------------------------------------------------------------------</text></line>
+<line><text align ="center" length="55"></text><text align ="center" length="55">Žig in podpis izvajalca</text></line>
+<line></line>
 <!-- ******************************************************************************************************************************************************************************************** -->      
 <!-- OBVESTILA NA DNU RAČUNA V PRIMERU DA JE PLAČILO PREKO BANKE IN IMA ROK PLAČILA -->
-    #foreach ($paymentline in $ticket.payments)
-        #if ($paymentline.name == "bank")
-                #if($info-ticket-bottom-BankInfo1.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo1}#end</text></line> 
-                #if($info-ticket-bottom-BankInfo2.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo2}#end</text></line>
-                #if($info-ticket-bottom-BankInfo3.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo3}#end</text></line>
-                #if($info-ticket-bottom-BankInfo4.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo4}#end</text></line>
-                #if($info-ticket-bottom-BankInfo5.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo5}#end</text></line>
-                #if($info-ticket-bottom-BankInfo6.lenght()>3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo6}#end</text></line>          
-        #end
-    #end
+                #if($info-ticket-bottom-BankInfo1)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo1}</text></line> #end
+                #if($info-ticket-bottom-BankInfo2)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo2}</text></line>#end
+                #if($info-ticket-bottom-BankInfo3)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo3}</text></line>#end
+                #if($info-ticket-bottom-BankInfo4)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo4}</text></line>#end
+                #if($info-ticket-bottom-BankInfo5)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo5}</text></line>#end
+                #if($info-ticket-bottom-BankInfo6)<line><text align ="center" length="110">${info-ticket-bottom-BankInfo6}</text></line> #end         
+
+
     <line></line>
-    #if($info-ticket-bottom-Info1.lenght()>3)<line><text align="center" length="110">${info-ticket-bottom-Info1}</text></line>#end
-    #if($info-ticket-bottom-Info2.lenght()>3)<line><text align="center" length="110">${info-ticket-bottom-Info2}</text></line>#end
-    #if($info-ticket-bottom-Info3.lenght()>3)<line><text align="center" length="110">${info-ticket-bottom-Info3}</text></line>#end
+    #if($info-ticket-bottom-Info1)<line><text align="center" length="110">${info-ticket-bottom-Info1}</text></line>#end
+    #if($info-ticket-bottom-Info2)<line><text align="center" length="110">${info-ticket-bottom-Info2}</text></line>#end
+    #if($info-ticket-bottom-Info3)<line><text align="center" length="110">${info-ticket-bottom-Info3}</text></line>#end
 </ticket>
 </output>
 
