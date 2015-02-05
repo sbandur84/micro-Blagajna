@@ -36,6 +36,7 @@ public class JPaymentBank extends javax.swing.JPanel implements JPaymentInterfac
 
     private double m_dPaid;
     private double m_dTotal;
+    private String m_name;
     
     /** Creates new form JPaymentCash
      * @param notifier */
@@ -48,7 +49,7 @@ public class JPaymentBank extends javax.swing.JPanel implements JPaymentInterfac
         m_jTendered.addPropertyChangeListener("Edition", new RecalculateState());
         m_jTendered.addEditorKeys(m_jKeys);
         
-        
+        m_name="bank";
         
     }
     
@@ -77,8 +78,7 @@ public class JPaymentBank extends javax.swing.JPanel implements JPaymentInterfac
      */
     @Override
     public PaymentInfo executePayment() {
-        // edit seba - plačila iz banke se ne knjižijo v blagajno –> return new PaymentInfoTicket(m_dPaid, "bank");      
-        return new PaymentInfoTicket(0.00001, "bank");      
+        return new PaymentInfoTicket(m_dPaid, m_name);      
     }
 
     /**

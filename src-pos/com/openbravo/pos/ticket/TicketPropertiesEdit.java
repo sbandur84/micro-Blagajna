@@ -43,9 +43,12 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     public static final String DELIVERYDATE = "DELIVERYDATE";
     public static final String REFERENCE = "REFERENCE";
     public static final String REVERSETAX = "REVERSETAX";
+    public static final String REVERSETAXEU = "REVERSETAXEU";
     public static final String PERSON = "person";
     public static final String TAX_22 = "DDV 22 %";
     public static final String TAX_9_5 = "DDV 9,5 %";
+    public static final String ZDDV46 = "1. točka 46. člena";
+    public static final String ZDDV76 = "76.a člen";
     
     /** Creates new form JTicketsBagSharedList */
     private TicketPropertiesEdit(java.awt.Frame parent, boolean modal,Properties prop) {
@@ -89,27 +92,45 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         
         if(ticketProperties.containsKey(REVERSETAX)){
             jCheckBox1.setSelected(true);
+            jComboBox2.setEnabled(true);
+            jComboBox3.setEnabled(true);
+            jComboBox3.setSelectedItem(ZDDV76);
             
             if(ticketProperties.getProperty(REVERSETAX).equals(TAX_22)){
-                jSlider1.setValue(1);
-                jLabel1.setText(TAX_22);
-                jSlider1StateChanged(null);
-                jSlider1.setEnabled(true);
+                for(int i=0; i<jComboBox2.getItemCount(); i++){
+                    if(ticketProperties.getProperty(REVERSETAX).equals((String)jComboBox2.getItemAt(i)))
+                        jComboBox2.setSelectedIndex(i);
+                }
             }else if(ticketProperties.getProperty(REVERSETAX).equals(TAX_9_5)){
-                jSlider1.setValue(0);
-                jLabel1.setText(TAX_9_5);
-                jSlider1StateChanged(null);
-                jSlider1.setEnabled(true);
+                for(int i=0; i<jComboBox2.getItemCount(); i++){
+                    if(ticketProperties.getProperty(REVERSETAX).equals((String)jComboBox2.getItemAt(i)))
+                        jComboBox2.setSelectedIndex(i);
+                }
             }
-            else{
-                jCheckBox1.setSelected(false);
-                jSlider1.setEnabled(false);
-                jLabel1.setText("");
+        }
+        else if(ticketProperties.containsKey(REVERSETAXEU)){
+            jCheckBox1.setSelected(true);
+            jComboBox2.setEnabled(true);
+            jComboBox3.setEnabled(true);
+            jComboBox3.setSelectedItem(ZDDV46);
+            
+            
+            if(ticketProperties.getProperty(REVERSETAXEU).equals(TAX_22)){
+                for(int i=0; i<jComboBox2.getItemCount(); i++){
+                    if(ticketProperties.getProperty(REVERSETAXEU).equals((String)jComboBox2.getItemAt(i)))
+                        jComboBox2.setSelectedIndex(i);
+                }
+            }else if(ticketProperties.getProperty(REVERSETAXEU).equals(TAX_9_5)){
+                for(int i=0; i<jComboBox2.getItemCount(); i++){
+                    if(ticketProperties.getProperty(REVERSETAXEU).equals((String)jComboBox2.getItemAt(i)))
+                        jComboBox2.setSelectedIndex(i);
+                }
             }
-        }else{
+        }
+        else{
                 jCheckBox1.setSelected(false);
-                jSlider1.setEnabled(false);
-                jLabel1.setText("");
+                jComboBox2.setEnabled(false);
+                jComboBox3.setEnabled(false);
         }       
     }     
             
@@ -162,6 +183,12 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -183,18 +210,11 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jButton6 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jComboBox3 = new javax.swing.JComboBox();
         jPanel12 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jSlider1 = new javax.swing.JSlider();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setTitle(AppLocal.getIntString("caption.ticketproperties")); // NOI18N
 
@@ -235,7 +255,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         m_jButtonOk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/ok.png"))); // NOI18N
-        m_jButtonOk.setText("");
+        m_jButtonOk.setText("null");
         m_jButtonOk.setToolTipText(bundle.getString("Button.OK")); // NOI18N
         m_jButtonOk.setFocusPainted(false);
         m_jButtonOk.setFocusable(false);
@@ -261,6 +281,32 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jPanel1.add(jComboBox1);
 
         jPanel6.add(jPanel1);
+
+        jPanel9.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel5.setText("Referenca");
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
+        jPanel9.add(jLabel5);
+
+        jTextField4.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanel9.add(jTextField4);
+
+        jPanel6.add(jPanel9);
+
+        jPanel14.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel6.setText("Oznaka");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
+        jPanel14.add(jLabel6);
+
+        jTextField5.setPreferredSize(new java.awt.Dimension(20, 10));
+        jPanel14.add(jTextField5);
+
+        jPanel6.add(jPanel14);
 
         jPanel2.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
@@ -374,72 +420,33 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         jPanel6.add(jPanel8);
 
-        jPanel9.setPreferredSize(new java.awt.Dimension(300, 40));
-        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel5.setText("Referenca");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
-        jPanel9.add(jLabel5);
-
-        jTextField4.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel9.add(jTextField4);
-
-        jPanel6.add(jPanel9);
-
         jPanel11.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.LINE_AXIS));
 
-        jCheckBox1.setText("76.a člen");
-        jCheckBox1.setPreferredSize(new java.awt.Dimension(120, 23));
+        jCheckBox1.setActionCommand("");
+        jCheckBox1.setPreferredSize(new java.awt.Dimension(30, 23));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
         jPanel11.add(jCheckBox1);
+        jCheckBox1.getAccessibleContext().setAccessibleName("");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "76.a člen", "1. točka 46. člena" }));
+        jPanel11.add(jComboBox3);
 
         jPanel12.setPreferredSize(new java.awt.Dimension(0, 10));
         jPanel11.add(jPanel12);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("DDV 22 %");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setMaximumSize(new java.awt.Dimension(70, 15));
-        jLabel1.setMinimumSize(new java.awt.Dimension(70, 15));
-        jLabel1.setPreferredSize(new java.awt.Dimension(70, 15));
-        jPanel11.add(jLabel1);
-
-        jPanel13.setPreferredSize(new java.awt.Dimension(0, 10));
-        jPanel11.add(jPanel13);
-
-        jSlider1.setMaximum(1);
-        jSlider1.setPreferredSize(new java.awt.Dimension(70, 30));
-        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSlider1StateChanged(evt);
-            }
-        });
-        jPanel11.add(jSlider1);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DDV 22 %", "DDV 9,5 %" }));
+        jPanel11.add(jComboBox2);
 
         jPanel6.add(jPanel11);
 
-        jPanel14.setPreferredSize(new java.awt.Dimension(300, 40));
-        jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel6.setText("Oznaka");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
-        jPanel14.add(jLabel6);
-
-        jTextField5.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanel14.add(jTextField5);
-
-        jPanel6.add(jPanel14);
-
         getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(322, 413));
+        setSize(new java.awt.Dimension(332, 420));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -479,16 +486,25 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         
         
         if(jCheckBox1.isSelected()){
-            ticketProperties.setProperty(REVERSETAX, jLabel1.getText());
-            jSlider1StateChanged(null);
+            if (jComboBox3.getSelectedItem().equals(ZDDV76)){
+                ticketProperties.setProperty(REVERSETAX, jComboBox2.getSelectedItem().toString());
+                ticketProperties.remove(REVERSETAXEU);
+            }
+            else{
+                ticketProperties.setProperty(REVERSETAXEU, jComboBox2.getSelectedItem().toString());
+                ticketProperties.remove(REVERSETAX);
+            }
         }
         else{
             ticketProperties.remove(REVERSETAX);
-            jSlider1.setEnabled(false);
+            ticketProperties.remove(REVERSETAXEU);
             jCheckBox1.setSelected(false);
-            jSlider1StateChanged(null);
+            jComboBox2.setEnabled(false);
+            jComboBox3.setEnabled(false);
         }
           
+        
+        
         if(!jTextField5.getText().isEmpty())
             ticketProperties.setProperty(PERSON, jTextField5.getText());
         else
@@ -540,21 +556,9 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jTextField3.setText(formatd.format(d));
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        if(jSlider1.isEnabled()){
-            if( jSlider1.getValue() == 0)
-                jLabel1.setText(TAX_9_5);
-            else if(jSlider1.getValue() == 1)
-                jLabel1.setText(TAX_22);
-        }
-        else{
-            jLabel1.setText("");
-        }
-    }//GEN-LAST:event_jSlider1StateChanged
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        jSlider1.setEnabled( !jSlider1.isEnabled());
-        jSlider1StateChanged(null);
+        jComboBox2.setEnabled( !jComboBox2.isEnabled());
+        jComboBox3.setEnabled( !jComboBox3.isEnabled());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void m_jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jButtonCancelActionPerformed
@@ -562,9 +566,7 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     }//GEN-LAST:event_m_jButtonCancelActionPerformed
 
     private void m_jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jButtonResetActionPerformed
-        jLabel1.setText("");
         jComboBox1.setSelectedItem("Račun");
-        jSlider1.setEnabled(false);
         jCheckBox1.setSelected(false);
         jTextField1.setText("");
         jTextField2.setText("");
@@ -582,7 +584,8 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -592,7 +595,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -605,7 +607,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

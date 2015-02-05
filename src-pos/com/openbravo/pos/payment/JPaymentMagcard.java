@@ -100,7 +100,7 @@ public class JPaymentMagcard extends javax.swing.JPanel implements JPaymentInter
 
         if (payinfo.isPaymentOK()) {
 //            jlblMessage.setText("Transaction ID: " + payinfo.getTransactionID() + "APPROVED!");
-            JOptionPane.showMessageDialog(getRootPane(), "Transaction APPROVED!", "Card Payment", 
+            JOptionPane.showMessageDialog(getRootPane(), "Transakcija odobrena!", "Kartično plačilo", 
                     JOptionPane.PLAIN_MESSAGE);              
             revalidate();            
             return payinfo;
