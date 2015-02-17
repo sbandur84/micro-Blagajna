@@ -243,7 +243,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
 
         m_jButtonOk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jButtonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/ok.png"))); // NOI18N
-        m_jButtonOk.setText("null");
         m_jButtonOk.setToolTipText(bundle.getString("Button.OK")); // NOI18N
         m_jButtonOk.setFocusPainted(false);
         m_jButtonOk.setFocusable(false);
