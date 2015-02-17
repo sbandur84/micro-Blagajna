@@ -75,13 +75,13 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         }
         
         if(ticketProperties.containsKey(SERVICEDATE))
-            jTextField1.setText(ticketProperties.getProperty(SERVICEDATE));
+            jFormattedTextField1.setText(ticketProperties.getProperty(SERVICEDATE));
         
         if(ticketProperties.containsKey(DELIVERYDATE))
-            jTextField2.setText(ticketProperties.getProperty(DELIVERYDATE));
+            jFormattedTextField2.setText(ticketProperties.getProperty(DELIVERYDATE));
         
         if(ticketProperties.containsKey(CASHDATE))
-            jTextField3.setText(ticketProperties.getProperty(CASHDATE));
+            jFormattedTextField3.setText(ticketProperties.getProperty(CASHDATE));
         
         if(ticketProperties.containsKey(REFERENCE))
             jTextField4.setText(ticketProperties.getProperty(REFERENCE));
@@ -191,25 +191,13 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jTextField5 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jPanel15 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel16 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jPanel17 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jPanel11 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jComboBox3 = new javax.swing.JComboBox();
@@ -316,33 +304,9 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel2.add(jLabel2);
 
-        jTextField1.setEditable(false);
-        jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel2.add(jTextField1);
-        jPanel2.add(jPanel5);
-
-        jButton4.setToolTipText("");
-        jButton4.setMaximumSize(new java.awt.Dimension(30, 15));
-        jButton4.setMinimumSize(new java.awt.Dimension(30, 15));
-        jButton4.setPreferredSize(new java.awt.Dimension(30, 15));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4);
-        jPanel2.add(jPanel4);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton1.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1);
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
+        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(60, 20));
+        jPanel2.add(jFormattedTextField1);
 
         jPanel6.add(jPanel2);
 
@@ -354,32 +318,9 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel3);
 
-        jTextField2.setEditable(false);
-        jTextField2.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel7.add(jTextField2);
-        jPanel7.add(jPanel10);
-
-        jButton5.setToolTipText("");
-        jButton5.setMaximumSize(new java.awt.Dimension(30, 15));
-        jButton5.setMinimumSize(new java.awt.Dimension(30, 15));
-        jButton5.setPreferredSize(new java.awt.Dimension(30, 15));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton5);
-        jPanel7.add(jPanel15);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton2.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton2);
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
+        jFormattedTextField2.setPreferredSize(new java.awt.Dimension(60, 20));
+        jPanel7.add(jFormattedTextField2);
 
         jPanel6.add(jPanel7);
 
@@ -391,39 +332,15 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel8.add(jLabel4);
 
-        jTextField3.setEditable(false);
-        jTextField3.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel8.add(jTextField3);
-        jPanel8.add(jPanel16);
-
-        jButton6.setToolTipText("");
-        jButton6.setMaximumSize(new java.awt.Dimension(30, 15));
-        jButton6.setMinimumSize(new java.awt.Dimension(30, 15));
-        jButton6.setPreferredSize(new java.awt.Dimension(30, 15));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jButton6);
-        jPanel8.add(jPanel17);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton3.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jButton3);
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
+        jFormattedTextField3.setPreferredSize(new java.awt.Dimension(60, 20));
+        jPanel8.add(jFormattedTextField3);
 
         jPanel6.add(jPanel8);
 
         jPanel11.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.LINE_AXIS));
 
-        jCheckBox1.setActionCommand("");
         jCheckBox1.setPreferredSize(new java.awt.Dimension(30, 23));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,7 +348,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
             }
         });
         jPanel11.add(jCheckBox1);
-        jCheckBox1.getAccessibleContext().setAccessibleName("");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "76.a člen", "1. točka 46. člena" }));
         jPanel11.add(jComboBox3);
@@ -461,20 +377,20 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         */
         ticketProperties.setProperty(DOCTYPE, (String)jComboBox1.getSelectedItem());
         
-        if(jTextField1.getText().length()>2)
-            ticketProperties.setProperty(SERVICEDATE, jTextField1.getText());
+        if(jFormattedTextField1.getText().length()>2)
+            ticketProperties.setProperty(SERVICEDATE, jFormattedTextField1.getText());
         else
             ticketProperties.remove(SERVICEDATE);
         
         
-        if(jTextField2.getText().length()>2)
-            ticketProperties.setProperty(DELIVERYDATE, jTextField2.getText());
+        if(jFormattedTextField2.getText().length()>2)
+            ticketProperties.setProperty(DELIVERYDATE, jFormattedTextField2.getText());
         else
             ticketProperties.remove(DELIVERYDATE);
         
         
-        if(jTextField3.getText().length()>2)
-            ticketProperties.setProperty(CASHDATE, jTextField3.getText());
+        if(jFormattedTextField3.getText().length()>2)
+            ticketProperties.setProperty(CASHDATE, jFormattedTextField3.getText());
         else
             ticketProperties.remove(CASHDATE);
         
@@ -519,43 +435,6 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
         
     }//GEN-LAST:event_m_jButtonOkActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Date d = new Date();
-        JCalendarDialog.showCalendar(jButton1, d);
- 
-        SimpleDateFormat formatd = new SimpleDateFormat ("d.M.yyyy");
-
-        jTextField1.setText(formatd.format(d));
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTextField1.setText("");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTextField2.setText("");
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTextField3.setText("");
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Date d = new Date();
-        JCalendarDialog.showCalendar(jButton2, d);
-        SimpleDateFormat formatd = new SimpleDateFormat ("d.M.yyyy");
-        
-        jTextField2.setText(formatd.format(d));
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Date d = new Date();
-        JCalendarDialog.showCalendar(jButton3, d);
-        SimpleDateFormat formatd = new SimpleDateFormat ("d.M.yyyy");
-        
-        jTextField3.setText(formatd.format(d));
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         jComboBox2.setEnabled( !jComboBox2.isEnabled());
         jComboBox3.setEnabled( !jComboBox3.isEnabled());
@@ -568,48 +447,36 @@ public class TicketPropertiesEdit extends javax.swing.JDialog {
     private void m_jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jButtonResetActionPerformed
         jComboBox1.setSelectedItem("Račun");
         jCheckBox1.setSelected(false);
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
+        jFormattedTextField1.setText("");
+        jFormattedTextField2.setText("");
+        jFormattedTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
     }//GEN-LAST:event_m_jButtonResetActionPerformed
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JButton m_jButtonCancel;
