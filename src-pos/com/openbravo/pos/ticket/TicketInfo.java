@@ -855,6 +855,11 @@ public final class TicketInfo implements SerializableRead, Externalizable {
      */
     public void setOldTicket(Boolean otState) {
 	oldTicket = otState;
+        
+    
 }
+    public String formatCURRENCY(double value){
+        return Formats.CURRENCY.formatValue(value);
+    }
     
 }
