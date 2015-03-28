@@ -29,7 +29,8 @@ import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.util.StringUtils;
 import java.io.*;
 import java.util.Properties;
-
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adrianromero
@@ -329,7 +330,77 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
     public String getProductAttSetInstDesc() {
         return attributes.getProperty("product.attsetdesc", "");
     }
-
+    public ArrayList<String> getProductAttSetDescriptions(){
+        String attSet = attributes.getProperty("product.attsetdesc", "");
+        ArrayList<String> properties = new ArrayList<>();
+        
+        if (attSet.contains(",")) {
+            String[] parts = attSet.split(",");
+            for (String s : parts)
+            {
+                properties.add(s.trim());
+            }
+            
+        }
+        else{
+            properties.add(attSet);
+        }
+        return properties;
+    }
+    public Properties getProductAttSetProperties(){ // add seba return array of properties from string
+        String attSet = attributes.getProperty("product.attsetdesc", ""); // properties in description separated by ","
+        Properties properties = new Properties();
+        if (attSet.contains(",")) { // properties separated by ","
+            String[] parts = attSet.split(",");
+            for (String s : parts)
+            {
+                if (s.contains(":")){
+                    String[] prop = new String[2];
+                    prop = s.split(":");// property name and description separated by ":"
+                    properties.setProperty(
+                            prop[0].trim(), 
+                            prop[1].trim().length()>0?prop[1].trim():""
+                    );
+                }   
+            }
+        }
+        else if(attSet.contains(":")){
+            String[] prop = new String[2];
+            prop = attSet.split(":");// property name and description separated by ":"
+            String[] str = new String[2];
+            str[0] = prop[0].trim();
+            str[1] = prop[1].trim().length()>0?prop[1].trim():"";
+            properties.setProperty(str[0], str[1]);
+        }
+        return properties;
+    }
+    public ArrayList<String[]> getProductAttSetDescriptionsArray(){ // add seba return array of properties from string
+        String attSet = attributes.getProperty("product.attsetdesc", ""); // properties in description separated by ","
+        ArrayList<String[]> properties = new ArrayList<>();
+        if (attSet.contains(",")) { // properties separated by ","
+            String[] parts = attSet.split(",");
+            for (String s : parts)
+            {
+                if (s.contains(":")){
+                    String[] prop = new String[2];
+                    prop = s.split(":");// property name and description separated by ":"
+                    String[] str = new String[2];
+                    str[0] = prop[0].trim();
+                    str[1] = prop[1].trim().length()>0?prop[1].trim():"";
+                    properties.add(str);
+                }   
+            }
+        }
+        else if(attSet.contains(":")){
+            String[] prop = new String[2];
+            prop = attSet.split(":");// property name and description separated by ":"
+            String[] str = new String[2];
+            str[0] = prop[0].trim();
+            str[1] = prop[1].trim().length()>0?prop[1].trim():"";
+            properties.add(str);
+        }
+        return properties;
+    }
     /**
      *
      * @param value
@@ -528,6 +599,16 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
      */
     public String printName() {
         return StringUtils.encodeXML(attributes.getProperty("product.name"));
+    }
+    
+    public Boolean doesNameContain(CharSequence cs) {
+        if(
+                StringUtils.encodeXML(attributes.getProperty("product.name")).contains(cs)
+                ){
+            return true;
+            
+        }
+        else{return false;}
     }
 
     /**

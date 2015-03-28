@@ -355,8 +355,8 @@ public class JProductAttEdit extends javax.swing.JDialog {
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.EAST);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-609)/2, (screenSize.height-388)/2, 609, 388);
+        setSize(new java.awt.Dimension(617, 457));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void m_jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jButtonOKActionPerformed

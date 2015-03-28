@@ -84,7 +84,18 @@ public class CustomerInfo implements Serializable {
     public String getId() {
         return id;
     }
-
+    public String getTaxidType(){
+        if (taxid != null && 
+                (taxid.contains("si") 
+                || taxid.contains("SI")
+                || taxid.contains("Si")
+                || taxid.contains("sI"))
+                ){
+            return "SI";
+        }
+        else if(taxid != null && taxid.length()>6){return "STANDARD";}
+        else{return "NONE";}
+    } 
     /**
      *
      * @return taxid string
@@ -92,7 +103,6 @@ public class CustomerInfo implements Serializable {
     public String getTaxid() {
         return taxid;
     }    
-
     /**
      *
      * @param taxid

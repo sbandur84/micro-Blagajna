@@ -60,6 +60,8 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
     private DataLogicSystem m_dlSystem;
     
     private PaymentsModel m_PaymentsToClose = null;   
+    private PaymentsModel m_PaymentsToPrint = null; 
+    
     
     private TicketParser m_TTP;
     private final DateFormat df= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");   
@@ -214,7 +216,23 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             m_jSalesSubtotal.setText(m_PaymentsToClose.printSalesBase());
             m_jSalesTaxes.setText(m_PaymentsToClose.printSalesTaxes());
             m_jSalesTotal.setText(m_PaymentsToClose.printSalesTotal());
-        }          
+        }
+        else{ // add seba - if no transactions, then print zeroes on cash close
+
+            m_jPrintCash.setEnabled(true);
+            m_jCloseCash.setEnabled(true);
+            
+            m_jPrintCashTop.setEnabled(true);
+            m_jCloseCashTop.setEnabled(true);                        
+
+            m_jCount.setText(Formats.CURRENCY.formatValue(0));
+            m_jCash.setText(Formats.CURRENCY.formatValue(0));
+            
+            m_jSales.setText(Formats.CURRENCY.formatValue(0));
+            m_jSalesSubtotal.setText(Formats.CURRENCY.formatValue(0));
+            m_jSalesTaxes.setText(Formats.CURRENCY.formatValue(0));
+            m_jSalesTotal.setText(Formats.CURRENCY.formatValue(0));   
+        }
         
         m_jTicketTable.setModel(m_PaymentsToClose.getPaymentsModel());
                 
@@ -263,7 +281,106 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
         catch (SQLException e){System.out.println("error = " + e);}  
         m_jNoCashSales.setText(result.toString());
               
-       }   
+       }
+    private void loadOldData() throws BasicException {
+        
+        // Reset
+        m_jSequence.setText(null);
+        m_jMinDate.setText(null);
+        m_jMaxDate.setText(null);
+        m_jPrintCash.setEnabled(false);
+        m_jCloseCash.setEnabled(false);
+        
+        m_jPrintCashTop.setEnabled(false);
+        m_jCloseCashTop.setEnabled(false);
+        
+        m_jCount.setText(null); // AppLocal.getIntString("label.noticketstoclose");
+        m_jCash.setText(null);
+
+        m_jSales.setText(null);
+        m_jSalesSubtotal.setText(null);
+        m_jSalesTaxes.setText(null);
+        m_jSalesTotal.setText(null);
+        
+        m_jTicketTable.setModel(new DefaultTableModel());
+        m_jsalestable.setModel(new DefaultTableModel());
+            
+        
+        // LoadData
+        int closeCashSequence = (int)Formats.INT.parseValue(jTextField1.getText());
+        m_PaymentsToPrint = PaymentsModel.loadInstance(m_App,closeCashSequence);
+        
+        // Populate Data
+        m_jSequence.setText(m_PaymentsToPrint.printSequence());
+        m_jMinDate.setText(m_PaymentsToPrint.printDateStart());
+        m_jMaxDate.setText(m_PaymentsToPrint.printDateEnd());
+        
+        if (m_PaymentsToPrint.getPayments() != 0 || m_PaymentsToPrint.getSales() != 0) {
+
+            m_jPrintCash.setEnabled(true);
+            m_jCloseCash.setEnabled(true);
+            
+            m_jPrintCashTop.setEnabled(true);
+            m_jCloseCashTop.setEnabled(true);                        
+
+            m_jCount.setText(m_PaymentsToPrint.printPayments());
+            m_jCash.setText(m_PaymentsToPrint.printPaymentsTotal());
+            
+            m_jSales.setText(m_PaymentsToPrint.printSales());
+            m_jSalesSubtotal.setText(m_PaymentsToPrint.printSalesBase());
+            m_jSalesTaxes.setText(m_PaymentsToPrint.printSalesTaxes());
+            m_jSalesTotal.setText(m_PaymentsToPrint.printSalesTotal());
+        }
+       
+        
+        m_jTicketTable.setModel(m_PaymentsToPrint.getPaymentsModel());
+                
+        TableColumnModel jColumns = m_jTicketTable.getColumnModel();
+        jColumns.getColumn(0).setPreferredWidth(178);
+        jColumns.getColumn(0).setResizable(false);
+        jColumns.getColumn(1).setPreferredWidth(80);
+        jColumns.getColumn(1).setResizable(false);
+        
+        m_jsalestable.setModel(m_PaymentsToPrint.getSalesModel());
+        
+        jColumns = m_jsalestable.getColumnModel();
+        jColumns.getColumn(0).setPreferredWidth(108);
+        jColumns.getColumn(0).setResizable(false);
+        jColumns.getColumn(1).setPreferredWidth(75);
+        jColumns.getColumn(1).setResizable(false);
+        jColumns.getColumn(2).setPreferredWidth(75);
+        jColumns.getColumn(2).setResizable(false);        
+                               
+// read number of no cash drawer activations
+       try{
+            result=0;
+            s=m_App.getSession();
+            con=s.getConnection();  
+            String sdbmanager = m_dlSystem.getDBVersion();           
+// John L July 2014 Clear previous Drawer Openings
+//            if (("Derby".equals(sdbmanager)) || ("Apache Derby".equals(sdbmanager))){                
+//               SQL = "SELECT * FROM DRAWEROPENED WHERE TICKETID = 'No Sale' AND OPENDATE > {fn TIMESTAMP('"+ m_PaymentsToPrint.getDateStartDerby() +"')}";                                  
+//            } else {  
+//               SQL="SELECT * FROM DRAWEROPENED WHERE TICKETID = 'No Sale' AND OPENDATE > " + "'" + m_PaymentsToPrint.printDateStart()+ "'";        
+            if ("PostgreSQL".equals(sdbmanager)) {
+                SQL = "SELECT * FROM DRAWEROPENED WHERE TICKETID = 'No Sale' AND OPENDATE > " + "'" + m_PaymentsToPrint.printDateStart() + "'";
+            } else {
+                SQL = "SELECT * FROM DRAWEROPENED WHERE TICKETID = 'No Sale' AND OPENDATE > {fn TIMESTAMP('" + m_PaymentsToPrint.getDateStartDerby() + "')}";
+            }
+
+            stmt = (Statement) con.createStatement();      
+            rs = stmt.executeQuery(SQL);
+            while (rs.next()){
+                result ++;           
+            }
+            rs=null;
+            con=null;
+            s=null;
+            }       
+        catch (SQLException e){System.out.println("error = " + e);}  
+        m_jNoCashSales.setText(result.toString());
+              
+       } 
     
     private void printPayments(String report) {
         
@@ -275,6 +392,26 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             try {
                 ScriptEngine script = ScriptFactory.getScriptEngine(ScriptFactory.VELOCITY);
                 script.put("payments", m_PaymentsToClose);
+                script.put("nosales",result.toString());                
+                m_TTP.printTicket(script.eval(sresource).toString());
+// JG 16 May 2012 use multicatch
+            } catch (ScriptException | TicketPrinterException e) {
+                MessageInf msg = new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.cannotprintticket"), e);
+                msg.show(this);
+            }
+        }
+    }
+    
+    private void printOldPayments(String report) {
+        
+        String sresource = m_dlSystem.getResourceAsXML(report);
+        if (sresource == null) {
+            MessageInf msg = new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.cannotprintticket"));
+            msg.show(this);
+        } else {
+            try {
+                ScriptEngine script = ScriptFactory.getScriptEngine(ScriptFactory.VELOCITY);
+                script.put("payments", m_PaymentsToPrint);
                 script.put("nosales",result.toString());                
                 m_TTP.printTicket(script.eval(sresource).toString());
 // JG 16 May 2012 use multicatch
@@ -343,6 +480,12 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
         jPanelBottom = new javax.swing.JPanel();
         m_jCloseCash = new javax.swing.JButton();
         m_jPrintCash = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -462,11 +605,6 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
         m_jSalesSubtotal.setEditable(false);
         m_jSalesSubtotal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jSalesSubtotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        m_jSalesSubtotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jSalesSubtotalActionPerformed(evt);
-            }
-        });
 
         m_jScrollSales.setBorder(null);
         m_jScrollSales.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -669,23 +807,53 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/reload.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ReloadActiveCashPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBottomLayout = new javax.swing.GroupLayout(jPanelBottom);
         jPanelBottom.setLayout(jPanelBottomLayout);
         jPanelBottomLayout.setHorizontalGroup(
             jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBottomLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(m_jPrintCash, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(m_jCloseCash, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(m_jCloseCash, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelBottomLayout.setVerticalGroup(
             jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(m_jCloseCash, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(m_jPrintCash, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel9.setText(bundle.getString("label.CloseCashNr")); // NOI18N
+        jPanel2.add(jLabel9);
+        jPanel2.add(jTextField1);
+
+        jButton1.setText(bundle.getString("button.load")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1OpenCashPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+
+        jButton2.setText(bundle.getString("Button.Print")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2PrintPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -694,11 +862,14 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,8 +881,10 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanelBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -837,13 +1010,35 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
 
     }//GEN-LAST:event_m_jPrintCashActionPerformed
 
-    private void m_jSalesSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jSalesSubtotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_jSalesSubtotalActionPerformed
+    private void jButton1OpenCashPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1OpenCashPerformed
+        try{
+            loadOldData();
+        }
+        catch(BasicException e){
+            JOptionPane.showMessageDialog(null,e.toString());
+        }
+    }//GEN-LAST:event_jButton1OpenCashPerformed
+
+    private void jButton3ReloadActiveCashPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ReloadActiveCashPerformed
+        try{
+            loadData();
+        }
+        catch(BasicException e){
+            JOptionPane.showMessageDialog(null,e.toString());
+        }
+    }//GEN-LAST:event_jButton3ReloadActiveCashPerformed
+
+    private void jButton2PrintPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2PrintPerformed
+       // print report
+                printOldPayments("Printer.CloseCash");
+    }//GEN-LAST:event_jButton2PrintPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -854,12 +1049,15 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelBottom;
     private javax.swing.JPanel jPanelTop;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField m_jCash;
     private javax.swing.JButton m_jCloseCash;
     private javax.swing.JButton m_jCloseCashTop;
